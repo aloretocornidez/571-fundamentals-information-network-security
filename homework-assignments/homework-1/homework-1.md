@@ -12,17 +12,25 @@ organizations.
 > Give an example of a type of publication for which confidentiality of the
 > stored data is the most important requirement.
 
-    The reports should only be accessible by people who are authorized to view aforementioned reports. This means protecting the confidentiality of each report is important. Only authorized requestors of an organization should have access to organization's financial report.
+The reports should only be accessible by people who are authorized to view
+aforementioned reports. This means protecting the confidentiality of each report
+is important. Only authorized requestors of an organization should have access
+to organization's financial report.
 
 > Give an example of a type of publication in which data integrity is the most
 > important requirement.
 
-    For financial reports, it is important that all of the cash flow statements, balance sheets, and income statements all have the correct numbers for each of their values if they want to maintain a non-threated relationship with the IRS.
+For financial reports, it is important that all of the cash flow statements,
+balance sheets, and income statements all have the correct numbers for each of
+their values if they want to maintain a non-threated relationship with the IRS.
 
 > Give an example in which system availability is the most important
 > requirement.
 
-    Any company that works with stock trading would want the data to be available to them at a moment's notice. This means that the availability of APIs should be present in addition to resistance from denial of service attacks. This assumes authorized access.
+Any company that works with stock trading would want the data to be available to
+them at a moment's notice. This means that the availability of APIs should be
+present in addition to resistance from denial of service attacks. This assumes
+authorized access.
 
 ## 1.4
 
@@ -32,54 +40,62 @@ Justify your answers.
 
 > An organization managing public information on its Web server.
 
-    **Severity: Low**
+**Severity: Low**
 
-    - Confidentiality: Information is public, so data confidentiality is not present.
+- Confidentiality: Information is public, so data confidentiality is not
+  present.
 
-    - Availability: Information is public, so data availability is not lost.
+- Availability: Information is public, so data availability is not lost.
 
-    - Integrity: Information is public, so data integrity is not lost.
+- Integrity: Information is public, so data integrity is not lost.
 
 > A law enforcement organization managing extremely sensitive investigative
 > information.
 
-    **Severity: High**
+**Severity: High**
 
-    - Confidentiality: Loss of confidentiality will result in possible national security concerns. (Depending on the secuirty clearance required for access.)
+- Confidentiality: Loss of confidentiality will result in possible national
+  security concerns. (Depending on the secuirty clearance required for access.)
 
-    - Availability: Loss of availability is a national security concern.
+- Availability: Loss of availability is a national security concern.
 
-    - Integrity: Loss of data integrity is a national security concern.
+- Integrity: Loss of data integrity is a national security concern.
 
 > A financial organization managing routine administrative information (not
 > privacy-related information).
 
-    **Severity: Moderate**
+**Severity: Moderate**
 
-    - Confidentiality: If administrative information is not kept confiential, effects from losss of confidentiality will likely result in non-security and non-health issues for the members of the organization.
+- Confidentiality: If administrative information is not kept confiential,
+  effects from losss of confidentiality will likely result in non-security and
+  non-health issues for the members of the organization.
 
-    - Availability: Loss of administrative data, while inconvenient for an organization, does not cause any national security issues. However, company functions may not be able to occur until the data is regenerated.
+- Availability: Loss of administrative data, while inconvenient for an
+  organization, does not cause any national security issues. However, company
+  functions may not be able to occur until the data is regenerated.
 
-    - Integrity: Loss of data integrity for administrative information does not cause national secuirty issues, however, data must still be generated again.
+- Integrity: Loss of data integrity for administrative information does not
+  cause national secuirty issues, however, data must still be generated again.
 
 > An information system used for large acquisitions in a contracting
 > organization contains both sensitive, pre-solicitation phase contract
 > information and routine administrative information. Assess the impact for the
 > two data sets separately and the information system as a whole.
 
-    - Contract Information
-    **Severity: Moderate**
+- Contract Information **Severity: Moderate**
 
-    - Confidentiality: Loss of confidentiality will result in prices for contractors being made public.
+- Confidentiality: Loss of confidentiality will result in prices for contractors
+  being made public.
 
-    - Availability: Loss of availability of the data will result in the need to reaccquire the data.
+- Availability: Loss of availability of the data will result in the need to
+  reaccquire the data.
 
-    - Integrity: Loss of data integrity will result in the need to reaccquire the data. But no security related issues.
+- Integrity: Loss of data integrity will result in the need to reaccquire the
+  data. But no security related issues.
 
-    - Admin Information
-    **Severity: Moderate**
+- Admin Information **Severity: Moderate**
 
-    Justification: Refer to previous part above to the financial organization.
+Justification: Refer to previous part above to the financial organization.
 
 > A power plant contains a SCADA (supervisory control and data acquisition)
 > system controlling the distribution of electric power for a large military
@@ -87,9 +103,12 @@ Justify your answers.
 > administrative information. Assess the impact for the two data sets separately
 > and the information system as a whole.
 
-    **Severity: High **
+**Severity: High**
 
-    Loss of the CIA principles in the CIA triad is cause for national security conern in this situation. Foreign powers can cause power loss if confidentiality is lost. Base capabilities will be wrongly estimated if integrity is not present. Availability of the data is important for monitoring.
+Loss of the CIA principles in the CIA triad is cause for national security
+conern in this situation. Foreign powers can cause power loss if confidentiality
+is lost. Base capabilities will be wrongly estimated if integrity is not
+present. Availability of the data is important for monitoring.
 
 ## 2.10
 
