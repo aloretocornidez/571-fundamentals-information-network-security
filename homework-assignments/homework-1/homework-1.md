@@ -4,17 +4,42 @@ Name: Alan Manuel Loreto Cornídez
 
 Due Date: January 29th, 2024
 
-## 1.1
+## 1.3
 
-Consider an automated cash deposit machine in which users provide a card or an
-account number to deposit cash. Give examples of confidentiality, integrity, and
-avail- ability requirements associated with the system, and, in each case,
-indicate the degree of importance of the requirement.
+Consider a financial report publishing system used to produce reports for
+various organizations.
 
-## 1.2
+- Give an example of a type of publication for which confidentiality of the
+  stored data is the most important requirement.
+- Give an example of a type of publication in which data integrity is the most
+  important requirement.
+- Give an example in which system availability is the most important
+  requirement.
 
-Repeat Problem 1.1 for a payment gateway system where a user pays for an item
-using their account via the payment gateway.
+### Response
+
+> Give an example of a type of publication for which confidentiality of the
+> stored data is the most important requirement.
+
+The reports should only be accessible by people who are authorized to view
+aforementioned reports. This means protecting the confidentiality of each report
+is important. Only authorized requestors of an organization should have access
+to organization's financial report.
+
+> Give an example of a type of publication in which data integrity is the most
+> important requirement.
+
+For financial reports, it is important that all of the cash flow statements,
+balance sheets, and income statements all have the correct numbers for each of
+their values if they want to maintain a non-threated relationship with the IRS.
+
+> Give an example in which system availability is the most important
+> requirement.
+
+Any company that works with stock trading would want the data to be available to
+them at a moment's notice. This means that the availability of APIs should be
+present in addition to resistance from denial of service attacks. This assumes
+authorized access.
 
 ## 1.4
 
@@ -36,27 +61,89 @@ Justify your answers.
   management system contains both the student data and the book data. Assess the
   impact for the two data sets separately and the information system as a whole.
 
-## 2.7
+### Response
 
-What is the smallest positive integer that has exactly $k$ divisors? Provide
-answers for values for $1 \le k \le 8$.
+> A student maintaining a blog to post public information.
 
-## 2.11
+**Severity: Low**
 
-Show that an integer N is congruent modulo 9 to the sum of its decimal digits.
+- Confidentiality: Information is public, so no risk is present.
+- Availability: Information is public, so no risk is present.
+- Integrity: Information is public, so no risk is present.
 
-$723 \equiv 7 + 2 + 3 \equiv 12 \equiv 1 + 2 \equiv 3 (\text{mod }9)$
+> An examination section of a university that is managing sensitive information
+> about exam papers.
 
-This is the basis for the familiar procedure of “casting out 9’s” when
-checking computations in arithmetic.
+**Severity: Moderate**
 
-## 2.16
+- Confidentiality: Students' grades being made available is a moderate risk due
+  to confidentiality laws, however, no one is put in immediate danger.
+- Availability: Students may have to retake an exam, so the data availability is
+  lost but can be regenerated.
+- Integrity: The integrity of the information is important in order to ensure
+  that the students are fairly passing their course work, however, no one is put
+  in immediate danger if the data is not maliciously changed.
 
-Using the extended Euclidean algorithm, find the multiplicative inverse of:
+> An information system in a pathological laboratory maintaining the patient’s
+> data.
 
-- 135 mod 61
-- 7465 mod 2464
-- 42828 mod 6407
+**Severity: High**
+
+- Confidentiality: Confidentiality of medical records are protected by the law,
+  so the loss of that confidentiality is high risk.
+- Availability: If the data is lost then patients will not have access to their
+  vital medical records.
+- Integrity: Integrity of medical information is important to make sure that
+  medical procedures are followed correctly for each patient.
+
+> A student information system used for maintaining student data in a university
+> that contains both personal, academic information and routine administrative
+> information (not privacy related). Assess the impact for the two data sets
+> separately and the information system as a whole.
+
+Severity: Moderate
+
+Academic Information
+
+- Confidentiality: Grades should not be available to unauthorized parties. Allowing unauthorized access to student academic records violates american laws.
+- Availability: 
+- Integrity
+
+Administrative Information
+
+- Confidentiality
+- Availability
+- Integrity
+
+> A university library contains a library management system, which controls the
+> distribution of books among the students of various departments. The library
+> management system contains both the student data and the book data. Assess the
+> impact for the two data sets separately and the information system as a whole.
+
+- Confidentiality
+- Availability
+- Integrity
+
+## 2.10
+
+Find the multiplicative inverse of each nonzero element in $Z_{5}$.
+
+### Response
+
+## 2.12
+
+- Determine gcd(72345, 43215)
+- Determine gcd(3486, 10292)
+
+### Response
+
+## 2.16(c)
+
+Using the extended Euclidean algorithm, find the multiplicative inverse of
+
+- 42828 mod 6407.
+
+### Response
 
 ## 2.26
 
@@ -65,6 +152,8 @@ Prove the following:
 If $p$ is prime, then $f(p^{i}) = p^{i} - p^{i - 1}$.
 
 Hint: What numbers have a factor in common with pi?
+
+### Response
 
 ## 3.5
 
@@ -94,6 +183,8 @@ Answer the questions given the following enciphered message:
 - How secure is the method?
 - What kind of practical problems may arise while using this method?
 
+### Response
+
 ## 3.14
 
 Encrypt the message "meet me at the usual place at ten rather than eight o
@@ -106,6 +197,8 @@ $$\begin{pmatrix} 7 && 3 \\ 2 && 5 \end{pmatrix} $$
 - Show the calculations for the corresponding decryption of the ciphertext to
   recover the original plaintext.
 
+### Response
+
 ## 3.15
 
 We have shown that the Hill cipher succumbs to a known plaintext attack if
@@ -113,9 +206,7 @@ sufficient plaintext–ciphertext pairs are provided. It is even easier to solve
 the Hill cipher if a chosen plaintext attack can be mounted. Describe such an
 attack.
 
-## 3.19
-
-Using the Vigenère cipher, encrypt the word "cryptographic" using the word "eng"
+### Response
 
 ## 3.20
 
@@ -130,5 +221,6 @@ third with a shift of 5 letters, and so on.
 3 11 5 7 17 21 0 11 14 8 7 13 9
 
 - Using the ciphertext produced in part (a), find a key so that the ciphertext
-  decrypts to the plaintext `cashnotneeded`. 
+  decrypts to the plaintext `cashnotneeded`.
 
+### Response
