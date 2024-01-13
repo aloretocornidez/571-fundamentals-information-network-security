@@ -6,40 +6,23 @@ Due Date: January 29th, 2024
 
 ## 1.3
 
-Consider a financial report publishing system used to produce reports for
-various organizations.
-
-- Give an example of a type of publication for which confidentiality of the
-  stored data is the most important requirement.
-- Give an example of a type of publication in which data integrity is the most
-  important requirement.
-- Give an example in which system availability is the most important
-  requirement.
-
-### Response
+Consider a desktop publishing system used to produce documents for various
+organizations.
 
 > Give an example of a type of publication for which confidentiality of the
 > stored data is the most important requirement.
 
-The reports should only be accessible by people who are authorized to view
-aforementioned reports. This means protecting the confidentiality of each report
-is important. Only authorized requestors of an organization should have access
-to organization's financial report.
+    The reports should only be accessible by people who are authorized to view aforementioned reports. This means protecting the confidentiality of each report is important. Only authorized requestors of an organization should have access to organization's financial report.
 
 > Give an example of a type of publication in which data integrity is the most
 > important requirement.
 
-For financial reports, it is important that all of the cash flow statements,
-balance sheets, and income statements all have the correct numbers for each of
-their values if they want to maintain a non-threated relationship with the IRS.
+    For financial reports, it is important that all of the cash flow statements, balance sheets, and income statements all have the correct numbers for each of their values if they want to maintain a non-threated relationship with the IRS.
 
 > Give an example in which system availability is the most important
 > requirement.
 
-Any company that works with stock trading would want the data to be available to
-them at a moment's notice. This means that the availability of APIs should be
-present in addition to resistance from denial of service attacks. This assumes
-authorized access.
+    Any company that works with stock trading would want the data to be available to them at a moment's notice. This means that the availability of APIs should be present in addition to resistance from denial of service attacks. This assumes authorized access.
 
 ## 1.4
 
@@ -47,82 +30,66 @@ For each of the following assets, assign a low, moderate, or high impact level
 for the loss of confidentiality, availability, and integrity, respectively.
 Justify your answers.
 
-- A student maintaining a blog to post public information.
-- An examination section of a university that is managing sensitive information
-  about exam papers.
-- An information system in a pathological laboratory maintaining the patient’s
-  data.
-- A student information system used for maintaining student data in a university
-  that contains both personal, academic information and routine administrative
-  information (not privacy related). Assess the impact for the two data sets
-  separately and the information system as a whole.
-- A university library contains a library management system, which controls the
-  distribution of books among the students of various departments. The library
-  management system contains both the student data and the book data. Assess the
-  impact for the two data sets separately and the information system as a whole.
+> An organization managing public information on its Web server.
 
-### Response
+    **Severity: Low**
 
-> A student maintaining a blog to post public information.
+    - Confidentiality: Information is public, so data confidentiality is not present.
 
-**Severity: Low**
+    - Availability: Information is public, so data availability is not lost.
 
-- Confidentiality: Information is public, so no risk is present.
-- Availability: Information is public, so no risk is present.
-- Integrity: Information is public, so no risk is present.
+    - Integrity: Information is public, so data integrity is not lost.
 
-> An examination section of a university that is managing sensitive information
-> about exam papers.
+> A law enforcement organization managing extremely sensitive investigative
+> information.
 
-**Severity: Moderate**
+    **Severity: High**
 
-- Confidentiality: Students' grades being made available is a moderate risk due
-  to confidentiality laws, however, no one is put in immediate danger.
-- Availability: Students may have to retake an exam, so the data availability is
-  lost but can be regenerated.
-- Integrity: The integrity of the information is important in order to ensure
-  that the students are fairly passing their course work, however, no one is put
-  in immediate danger if the data is not maliciously changed.
+    - Confidentiality: Loss of confidentiality will result in possible national security concerns. (Depending on the secuirty clearance required for access.)
 
-> An information system in a pathological laboratory maintaining the patient’s
-> data.
+    - Availability: Loss of availability is a national security concern.
 
-**Severity: High**
+    - Integrity: Loss of data integrity is a national security concern.
 
-- Confidentiality: Confidentiality of medical records are protected by the law,
-  so the loss of that confidentiality is high risk.
-- Availability: If the data is lost then patients will not have access to their
-  vital medical records.
-- Integrity: Integrity of medical information is important to make sure that
-  medical procedures are followed correctly for each patient.
+> A financial organization managing routine administrative information (not
+> privacy-related information).
 
-> A student information system used for maintaining student data in a university
-> that contains both personal, academic information and routine administrative
-> information (not privacy related). Assess the impact for the two data sets
-> separately and the information system as a whole.
+    **Severity: Moderate**
 
-Severity: Moderate
+    - Confidentiality: If administrative information is not kept confiential, effects from losss of confidentiality will likely result in non-security and non-health issues for the members of the organization.
 
-Academic Information
+    - Availability: Loss of administrative data, while inconvenient for an organization, does not cause any national security issues. However, company functions may not be able to occur until the data is regenerated.
 
-- Confidentiality: Grades should not be available to unauthorized parties. Allowing unauthorized access to student academic records violates american laws.
-- Availability: 
-- Integrity
+    - Integrity: Loss of data integrity for administrative information does not cause national secuirty issues, however, data must still be generated again.
 
-Administrative Information
+> An information system used for large acquisitions in a contracting
+> organization contains both sensitive, pre-solicitation phase contract
+> information and routine administrative information. Assess the impact for the
+> two data sets separately and the information system as a whole.
 
-- Confidentiality
-- Availability
-- Integrity
+    - Contract Information
+    **Severity: Moderate**
 
-> A university library contains a library management system, which controls the
-> distribution of books among the students of various departments. The library
-> management system contains both the student data and the book data. Assess the
-> impact for the two data sets separately and the information system as a whole.
+    - Confidentiality: Loss of confidentiality will result in prices for contractors being made public.
 
-- Confidentiality
-- Availability
-- Integrity
+    - Availability: Loss of availability of the data will result in the need to reaccquire the data.
+
+    - Integrity: Loss of data integrity will result in the need to reaccquire the data. But no security related issues.
+
+    - Admin Information
+    **Severity: Moderate**
+
+    Justification: Refer to previous part above to the financial organization.
+
+> A power plant contains a SCADA (supervisory control and data acquisition)
+> system controlling the distribution of electric power for a large military
+> installation. The SCADA system contains both real-time sensor data and routine
+> administrative information. Assess the impact for the two data sets separately
+> and the information system as a whole.
+
+    **Severity: High **
+
+    Loss of the CIA principles in the CIA triad is cause for national security conern in this situation. Foreign powers can cause power loss if confidentiality is lost. Base capabilities will be wrongly estimated if integrity is not present. Availability of the data is important for monitoring.
 
 ## 2.10
 
