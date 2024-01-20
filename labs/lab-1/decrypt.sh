@@ -10,7 +10,9 @@ cipher='abcdefghijklmnopqrstuvwxyz'
 plaintext='CFMYPVBRLQXWIEJDSGKHNACOTU'
 
 
-tr $cipher $plaintext < in.txt > out.txt
+tr $cipher $plaintext < in.txt  > out.txt
 
+
+tr $cipher $plaintext < in.txt | tr [:upper:] [:lower:] > out.txt
 
 
