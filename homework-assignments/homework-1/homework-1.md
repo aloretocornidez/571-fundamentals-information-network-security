@@ -55,7 +55,7 @@ Justify your answers.
 **Severity: High**
 
 - Confidentiality: Loss of confidentiality will result in possible national
-  security concerns. (Depending on the secuirty clearance required for access.)
+  security concerns. (Depending on the security clearance required for access.)
 
 - Availability: Loss of availability is a national security concern.
 
@@ -66,8 +66,8 @@ Justify your answers.
 
 **Severity: Moderate**
 
-- Confidentiality: If administrative information is not kept confiential,
-  effects from losss of confidentiality will likely result in non-security and
+- Confidentiality: If administrative information is not kept confidential,
+  effects from loss of confidentiality will likely result in non-security and
   non-health issues for the members of the organization.
 
 - Availability: Loss of administrative data, while inconvenient for an
@@ -75,7 +75,7 @@ Justify your answers.
   functions may not be able to occur until the data is regenerated.
 
 - Integrity: Loss of data integrity for administrative information does not
-  cause national secuirty issues, however, data must still be generated again.
+  cause national security issues, however, data must still be generated again.
 
 > An information system used for large acquisitions in a contracting
 > organization contains both sensitive, pre-solicitation phase contract
@@ -88,9 +88,9 @@ Justify your answers.
   being made public.
 
 - Availability: Loss of availability of the data will result in the need to
-  reaccquire the data.
+  reacquire the data.
 
-- Integrity: Loss of data integrity will result in the need to reaccquire the
+- Integrity: Loss of data integrity will result in the need to reacquire the
   data. But no security related issues.
 
 - Admin Information **Severity: Moderate**
@@ -106,107 +106,167 @@ Justification: Refer to previous part above to the financial organization.
 **Severity: High**
 
 Loss of the CIA principles in the CIA triad is cause for national security
-conern in this situation. Foreign powers can cause power loss if confidentiality
-is lost. Base capabilities will be wrongly estimated if integrity is not
-present. Availability of the data is important for monitoring.
+concern in this situation. Foreign powers can cause power loss if
+confidentiality is lost. Base capabilities will be wrongly estimated if
+integrity is not present. Availability of the data is important for monitoring.
 
 ## 2.10
 
 Find the multiplicative inverse of each nonzero element in $Z_{5}$.
 
+$$Z_{5} = \{0, 1, 2, 3, 4, 5\}$$
+
+It is important to note: $a$ has a multiplicative inverse in $Z_{n}$ if and only
+if $a$ is relatively prime to $n$
+
 ### Response
+
+Recall the multiplicate inverse: $\equiv (a)\text{mod}(5) = 1$
+
+The number pairs that satisfy this equation are as follows:
+
+- $(1*1)\text{mod}(5) = 1$
+- $(2*3)\text{mod}(5) = 1$
+- $(4*4)\text{mod}(5) = 1$
+
+Therefore, the multiplicative inverses in $\{(1,2), (2,3), (4,4)\}$
 
 ## 2.12
 
-- Determine gcd(72345, 43215)
-- Determine gcd(3486, 10292)
+Determine:
+
+$$\text{gcd}(24140, 16762)$$
+
+Using the euclidian algorithm:
+
+- $(24140)\text{mod}(16762) = 7378$
+- $(16762)\text{mod}(7378) = 2006$
+- $(7378)\text{mod}(2006) = 1360$
+- $(2006)\text{mod}(1360) = 646$
+- $(1360)\text{mod}(646) = 68$
+- $(646)\text{mod}(68) = 34$
+- $(68)\text{mod}(34) = 0$
+- $\therefore \text{gcd}(24140, 16762) = 34$
+
+$$\text{gcd}(4655, 12075)$$
+
+- $(12075)\text{mod}(4655) = 2765$
+- $(4655)\text{mod}(2765) = 1890$
+- $(2765)\text{mod}(1890) = 875$
+- $(1890)\text{mod}(875) = 140$
+- $(875)\text{mod}(140) = 35$
+- $(140)\text{mod}(35) = 0$
+- $\therefore \text{gcd}(4655,12075) = 35$
+
+## 2.13
+
+### Part A
+
+Suppose that $m=qn+r$ with $q>0$ and $0\le r < n$.
+
+Show that $\frac{m}{2} > r$.
 
 ### Response
+
+Given $\frac{m}{2} > r$, we know $m > 2r$.
+
+$m = qn + r$ so $2r < qn + r$
+
+Which means:
+
+$r < qn$
+
+Recall: $0 \le r < n$
+
+Since $n > r$, the above statement is true. (Assuming q is an integer)
+
+Thus, the original statement is true.
+
+$\frac{m}{2} > r$
+
+### Part B
+
+Let $A_{i}$ be the value of $A$ in the Euclidean algorithm after the $i$th
+iteration.
+
+Show that: $A_{i+2} < \frac{A_{i}}{2}$
+
+### Response
+
+From a recursive implementation of the Euclidean algorithm, we get the following
+relationship for terms used in the Euclidian algorithm:
+
+$$A_{i} = q_{i}A_{i+1} + A_{i+2}$$
+
+From part A, the relationship $A_{i+2} < \frac{A_{i}}{2}$ follows.
+
+### Part C
+
+Show that if $m$, $n$, and $N$ are integers with $(1 \le m, n \le 2^{N})$, then
+the Euclidean algorithm takes at most $2N$ steps to find the $\text{gcd}(m,n)$
+
+### Response
+
+From part B, we can see that $A_{3} < 2^{-1} A_{1}$, that $A_{5} < 2^{-1} A_{3}
+< 2^{-2} A_{5}$. This also applies generally so that $A_{2j+1} < 2^{-j} A_{1}$
+for all integers such that $1 < 2j + 1 \le k + 2$ where k is the number of steps
+in the algorithm.
+
+For odd $k$: $j = \frac{k}{2}$
+
+For even $k$: $j = \frac{k+1}{2}$
+
+In both cases, $k < 2N$.
 
 ## 2.16(c)
 
-Using the extended Euclidean algorithm, find the multiplicative inverse of
-
-- 42828 mod 6407.
+Find the multiplicative inverse of $550\text{mod}(1769)$ using the extended
+Euclidian algorithm.
 
 ### Response
 
+Constructing the table:
+
+$\text{gcd}(550, 1769)$
+
+$a = 1769$
+$b = 550$
+
+
+| index $i$ | quotient      | remainder         | $s_i$        | $t_i$         |
+| --------- | ------------- | ----------------- | ------------ | ------------- |
+| 0         |               | 1769              | 1            | 0             |
+| 1         |               | 550               | 0            | 1             |
+| 2         | 1769/550 =  3 | 1769- 3*550 = 119 | 1 - 3*0 = 1  | 0 - 3*1 = -3  |
+| 3         | 550/119 = 4   | 550 - 4*119 = 74  | 0 - 4*1 = -4 | 1 - 4*-3 = 13 |
+| 4         | 119/74 = 1    | 119-74 = 45       | 1 + 4 = 5    | -3 -13 = -16  |
+| 5         | 1             | 29                | -9           | 29            |
+| 6         | 1             | 16                | 14           | -45           |
+| 7         | 1             | 13                | -23          | 74            |
+| 8         | 1             | 3                 | 37           | -119          |
+| 9         | 4             | 1                 | 125          | 550           |
+| 10        | 3             | 0                 | -338         | -1769         |
+
+One iteration before the remainder equals zero, $t_i$ is 550.
+
+$\therefore 550$ is the multiplicative inverse of 1769 and 550.
+
 ## 2.26
-
-Prove the following:
-
-If $p$ is prime, then $f(p^{i}) = p^{i} - p^{i - 1}$.
-
-Hint: What numbers have a factor in common with pi?
 
 ### Response
 
 ## 3.5
 
-One way to solve the key distribution problem is to use a book that both the
-sender and the receiver possess. The sender and the receiver use the location of
-a word in the book as the code. In order to avoid problems when a particular
-plaintext word is not present in the book, the method can be modified to encode
-individual letters by the lo- cation of a word beginning with that letter.
-Further, to ease the encoding and decoding process, the encoding of a letter is
-the pair of line number and the location of the word in that line.
-
-For example, the first sentence of the 1931 book _The American Black Chamber_
-(by Herbert Yardley) is:
-
-The secret activities of the American Black Chamber, which I directed, ceased in
-1929, sixteen years after I arrived at the Department of State as a young
-telegraph operator.
-
-Using this book, the message “tact” can be encoded as (3,4),(1,3),(1,8),(3,4).
-
-The particular scheme discussed in this problem is based on this sentence.
-Answer the questions given the following enciphered message:
-
-(1,6), (1,8) (2,1) (3,5), (1,2), (3,4)
-
-- What is the plaintext?
-- How secure is the method?
-- What kind of practical problems may arise while using this method?
-
 ### Response
 
 ## 3.14
-
-Encrypt the message "meet me at the usual place at ten rather than eight o
-clock" using the Hill cipher with the key
-
-$$\begin{pmatrix} 7 && 3 \\ 2 && 5 \end{pmatrix} $$
-
-- Show your calculations and the result.
-
-- Show the calculations for the corresponding decryption of the ciphertext to
-  recover the original plaintext.
 
 ### Response
 
 ## 3.15
 
-We have shown that the Hill cipher succumbs to a known plaintext attack if
-sufficient plaintext–ciphertext pairs are provided. It is even easier to solve
-the Hill cipher if a chosen plaintext attack can be mounted. Describe such an
-attack.
-
 ### Response
 
 ## 3.20
-
-This problem explores the use of a one-time pad version of the Vigenère cipher.
-In this scheme, the key is a stream of random numbers between 0 and 26. For
-example, if the key is 3 19 5 ..., then the first letter of plaintext is
-encrypted with a shift of 3 letters, the second with a shift of 19 letters, the
-third with a shift of 5 letters, and so on.
-
-- Encrypt the plaintext `sendmoremoney` with the key stream
-
-3 11 5 7 17 21 0 11 14 8 7 13 9
-
-- Using the ciphertext produced in part (a), find a key so that the ciphertext
-  decrypts to the plaintext `cashnotneeded`.
 
 ### Response
