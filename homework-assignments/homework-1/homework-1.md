@@ -229,23 +229,21 @@ Constructing the table:
 
 $\text{gcd}(550, 1769)$
 
-$a = 1769$
-$b = 550$
+$a = 1769$ $b = 550$
 
-
-| index $i$ | quotient      | remainder         | $s_i$        | $t_i$         |
-| --------- | ------------- | ----------------- | ------------ | ------------- |
-| 0         |               | 1769              | 1            | 0             |
-| 1         |               | 550               | 0            | 1             |
-| 2         | 1769/550 =  3 | 1769- 3*550 = 119 | 1 - 3*0 = 1  | 0 - 3*1 = -3  |
-| 3         | 550/119 = 4   | 550 - 4*119 = 74  | 0 - 4*1 = -4 | 1 - 4*-3 = 13 |
-| 4         | 119/74 = 1    | 119-74 = 45       | 1 + 4 = 5    | -3 -13 = -16  |
-| 5         | 1             | 29                | -9           | 29            |
-| 6         | 1             | 16                | 14           | -45           |
-| 7         | 1             | 13                | -23          | 74            |
-| 8         | 1             | 3                 | 37           | -119          |
-| 9         | 4             | 1                 | 125          | 550           |
-| 10        | 3             | 0                 | -338         | -1769         |
+| index $i$ | quotient     | remainder          | $s_i$         | $t_i$          |
+| --------- | ------------ | ------------------ | ------------- | -------------- |
+| 0         |              | 1769               | 1             | 0              |
+| 1         |              | 550                | 0             | 1              |
+| 2         | 1769/550 = 3 | 1769- 3\*550 = 119 | 1 - 3\*0 = 1  | 0 - 3\*1 = -3  |
+| 3         | 550/119 = 4  | 550 - 4\*119 = 74  | 0 - 4\*1 = -4 | 1 - 4\*-3 = 13 |
+| 4         | 119/74 = 1   | 119-74 = 45        | 1 + 4 = 5     | -3 -13 = -16   |
+| 5         | 1            | 29                 | -9            | 29             |
+| 6         | 1            | 16                 | 14            | -45            |
+| 7         | 1            | 13                 | -23           | 74             |
+| 8         | 1            | 3                  | 37            | -119           |
+| 9         | 4            | 1                  | 125           | 550            |
+| 10        | 3            | 0                  | -338          | -1769          |
 
 One iteration before the remainder equals zero, $t_i$ is 550.
 
@@ -253,9 +251,46 @@ $\therefore 550$ is the multiplicative inverse of 1769 and 550.
 
 ## 2.26
 
+- Prove the following: If $p$ is prime, then $\phi(p^{i}) = p^{i} - p^{i-1}$
+
+Hint: What numbers have a factor in common with $p^{i}$?
+
 ### Response
 
+Since $p$ is prime, we know that the only possible values of $\text{GCD}(p,m) =
+1, p, p^{2}, ..., p^{k-1}P = p^{k}$.
+
+$\text{GCD}(p,m) > 1$ only occurs when $m$ is a multiple of $p$. Such that $m
+\in \{p, 2p, 3p, ..., p^{k}\}$ and there are $p^{k-1}$ multiples not greater
+than $p^{k}$.
+
+Therefore, the other $p^{k} - p^{k-1}$ numbers are relatively prime to $p^{k}$.
+
 ## 3.5
+
+One way to solve the key distribution problem is to use a line from a book that
+both the sender and the receiver possess. Typically, at least in spy novels, the
+first sentence of a book serves as the key. The particular scheme discussed in
+this problem is from one of the best suspense novels involving secret codes,
+Talking to Strange Men, by Ruth Rendell. Work this problem without consulting
+that book!
+
+Consider the following message: `SIDKHKDM AF HCRKIABIE SHIMC KD LFEAILA`
+
+This cipher-text was produced using the first sentence of The Other Side of
+Silence (a book about the spy Kim Philby):
+
+> The snow lay thick on the steps and the snowflakes driven by the wind looked
+> black in the headlights of the cars.
+
+- What is the encryption algorithm?
+
+- How secure is it?
+
+- To make the key distribution problem simple, both parties can agree to use the
+  first or last sentence of a book as the key. To change the key, they simply
+  need to agree on a new book. The use of the first sentence would be preferable
+  to the use of the last. Why?
 
 ### Response
 
