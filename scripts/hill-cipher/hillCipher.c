@@ -43,6 +43,13 @@ void asciiArrayToIndex(char *src, int *dst) {
   }
 }
 
+void printIndices(Parameters p, int *src) {
+  for (int i = 0; i < p.messageLength; i++) {
+    printf("%d ", src[i]);
+  }
+  printf("\n");
+}
+
 char indexToAscii(int pt) {
   if (pt == 26) {
     return ' ';
@@ -73,14 +80,11 @@ void convertArrayToAscii(int *src, char *dst) {
 // Conducts the actual encoding processes given the correct values.
 void cipherEncode(int *src, int *dst, Parameters p) {
 
-
   int keyRows = p.keyRows;
   int keyColumns = p.keyColumns;
 
-
   int dstRows = 2;
   int dstColumns = 2;
-
 
   for (int i = 0; i < keyRows; i++) {
     for (int j = 0; j < dstColumns; j++) {
@@ -163,13 +167,13 @@ int main(int argc, char *argv[]) {
   p.keyPtr[2] = 5;
   p.keyPtr[3] = 7;
 
-  printIndexArray(ptIndexArray, p);
+  printIndices(p, ptIndexArray);
 
+  // printIndexArray(ptIndexArray, p);
 
+  // cipherEncode(ptIndexArray, cipherIndexArray, p);
 
-  cipherEncode(ptIndexArray, cipherIndexArray, p);
-
-  printIndexArray(cipherIndexArray, p);
+  // printIndexArray(cipherIndexArray, p);
 
   // convertArrayToAscii(ptIndexArray, ptCharArray);
   // convertArrayToAscii(cipherIndexArray, messageArray);

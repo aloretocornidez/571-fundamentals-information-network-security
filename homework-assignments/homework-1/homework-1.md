@@ -9,23 +9,20 @@ Due Date: January 29th, 2024
 Consider a desktop publishing system used to produce documents for various
 organizations.
 
-> Give an example of a type of publication for which confidentiality of the
-> stored data is the most important requirement.
+### Give an example of a type of publication for which confidentiality of the stored data is the most important requirement.
 
 The reports should only be accessible by people who are authorized to view
 aforementioned reports. This means protecting the confidentiality of each report
 is important. Only authorized requestors of an organization should have access
 to organization's financial report.
 
-> Give an example of a type of publication in which data integrity is the most
-> important requirement.
+### Give an example of a type of publication in which data integrity is the most important requirement.
 
 For financial reports, it is important that all of the cash flow statements,
 balance sheets, and income statements all have the correct numbers for each of
 their values if they want to maintain a non-threated relationship with the IRS.
 
-> Give an example in which system availability is the most important
-> requirement.
+### Give an example in which system availability is the most important requirement.
 
 Any company that works with stock trading would want the data to be available to
 them at a moment's notice. This means that the availability of APIs should be
@@ -38,7 +35,7 @@ For each of the following assets, assign a low, moderate, or high impact level
 for the loss of confidentiality, availability, and integrity, respectively.
 Justify your answers.
 
-> An organization managing public information on its Web server.
+### An organization managing public information on its Web server.
 
 **Severity: Low**
 
@@ -49,8 +46,7 @@ Justify your answers.
 
 - Integrity: Information is public, so data integrity is not lost.
 
-> A law enforcement organization managing extremely sensitive investigative
-> information.
+### A law enforcement organization managing extremely sensitive investigative information.
 
 **Severity: High**
 
@@ -61,8 +57,7 @@ Justify your answers.
 
 - Integrity: Loss of data integrity is a national security concern.
 
-> A financial organization managing routine administrative information (not
-> privacy-related information).
+### A financial organization managing routine administrative information (not privacy-related information).
 
 **Severity: Moderate**
 
@@ -77,10 +72,7 @@ Justify your answers.
 - Integrity: Loss of data integrity for administrative information does not
   cause national security issues, however, data must still be generated again.
 
-> An information system used for large acquisitions in a contracting
-> organization contains both sensitive, pre-solicitation phase contract
-> information and routine administrative information. Assess the impact for the
-> two data sets separately and the information system as a whole.
+### An information system used for large acquisitions in a contracting organization contains both sensitive, pre-solicitation phase contract information and routine administrative information. Assess the impact for the two data sets separately and the information system as a whole.
 
 - Contract Information **Severity: Moderate**
 
@@ -97,11 +89,7 @@ Justify your answers.
 
 Justification: Refer to previous part above to the financial organization.
 
-> A power plant contains a SCADA (supervisory control and data acquisition)
-> system controlling the distribution of electric power for a large military
-> installation. The SCADA system contains both real-time sensor data and routine
-> administrative information. Assess the impact for the two data sets separately
-> and the information system as a whole.
+### A power plant contains a SCADA (supervisory control and data acquisition) system controlling the distribution of electric power for a large military installation. The SCADA system contains both real-time sensor data and routine administrative information. Assess the impact for the two data sets separately and the information system as a whole.
 
 **Severity: High**
 
@@ -137,7 +125,11 @@ Determine:
 
 $$\text{gcd}(24140, 16762)$$
 
-Using the euclidian algorithm:
+$$\text{gcd}(4655, 12075)$$
+
+### Response
+
+$$\text{gcd}(24140, 16762)$$ Using the euclidian algorithm:
 
 - $(24140)\text{mod}(16762) = 7378$
 - $(16762)\text{mod}(7378) = 2006$
@@ -292,16 +284,126 @@ Silence (a book about the spy Kim Philby):
   need to agree on a new book. The use of the first sentence would be preferable
   to the use of the last. Why?
 
-### Response
+## Response
 
 ## 3.14
 
-### Response
+A. Encrypt the message “meet me at the usual place at ten rather than eight
+o'clock” using the Hill cipher with the key:
+
+$$\begin{pmatrix} 9 && 4 \\ 5 && 7 \end{pmatrix}$$
+
+Show your calculations and the result.
+
+B. Show the calculations for the corresponding decryption of the ciphertext to
+recover the original plaintext.
+
+## Response | Part A
+
+First, the plaintext message has to be encoded to integers. In this case, the
+letters shall be encoded by their index in the alphabet.
+
+In this case, I shall encode spaces in the message as the last index of the
+alphabet. So index 27 shall be ' '. Following this encoding, the message is
+encoded into the following message:
+
+```
+12 4 4 19 27 12 4 27 0 19 27 19 7 4 27 20 
+18 20 0 11 27 15 11 0 2 4 27 0 19 27 19 4
+13 27 17 0 19 7 4 17 27 19 7 0 13 27 4 8 
+6 7 19 27 14 2 11 14 2 10
+```
+
+We then use the key matrix and the message two letters at a time (because this
+is the number of columns in the key matrix) at multiply the plaintext letters.
+This gives the following computation for the first two letters:
+
+$$
+\begin{bmatrix} 9 && 4 \\ 5 && 7 \end{bmatrix} \begin{bmatrix} 12 \\ 4
+\end{bmatrix} = \begin{bmatrix}124 \\ 88 \end{bmatrix}
+$$
+
+The last step to encode the letters is to modulo the result of this matrix
+multiplication by the number pof letters used in our alphabet. In this case,
+since the space is also included in the encoding scheme, the result shall have a
+modulus of 27.
+
+Therefore, the final value for the encoded letters shall be:
+
+$$
+\begin{bmatrix}124 \\ 88 \end{bmatrix}\text{mod}(27) = \begin{bmatrix} 6 \\
+7\end{bmatrix}
+$$
+
+This encodes the letters to the following cipher message: `qh`.
+
+Following this same procedure for the next two letters give the following:
+
+$$
+\begin{bmatrix} 9 && 4 \\ 5 && 7 \end{bmatrix} \begin{bmatrix} 4 \\ 19
+\end{bmatrix} \text{mod}(27)= \begin{bmatrix} 112 \\ 153
+\end{bmatrix}\text{mod}(27) = \begin{bmatrix} 4 \\ 18\end{bmatrix}
+$$
+
+Which encode to the following letters: `es`
+
+This makes the cipher: `qhes` up to this point.
+
+Following this procedure renders the following ciphertext:
+
+`QHESMZFNWZNUZJRA ORXYTSBHLSWFHZPFESEKJXENUJIFEOWBZFH DUSE`
+
+### Response Part B
+
+Following the same sort of procedure to decypher the text, we can take the
+inverse of the key matrix:
+
+$$
+\begin{pmatrix} 9 && 4 \\ 5 && 7 \end{pmatrix}^{-1} = \frac{1}{43}^{-1}\begin{pmatrix} 7 && -4 \\ -5 && 9\end{pmatrix} \text{mod}(27) =\begin{pmatrix}19 &&
+20 \\ 25 && 9\end{pmatrix}
+$$
+
+Using this inverse matrix, we can then conduct the same operations on the
+message to decrypt it.
+
+Doing the first four letters: `QHES` they are index as: `16 7 4 18`
+
+
+$$ \begin{pmatrix}19 && 20 \\ 25 && 9\end{pmatrix}\begin{pmatrix}6 \\ 7\end{pmatrix} \text{mod}(27) =\begin{pmatrix}16 \\ 7 \end{pmatrix}  =\begin{pmatrix}444 \\463\end{pmatrix} \text{mod}(27) =\begin{pmatrix}12 \\ 4\end{pmatrix} $$
+
+This gives the characters: `me`
+
+Doing the same for the following 2 characters:
+
+$$ \begin{pmatrix}19 && 20 \\ 25 && 9\end{pmatrix}\begin{pmatrix}6 \\ 7\end{pmatrix} \text{mod}(27) =\begin{pmatrix}4 \\ 18 \end{pmatrix}  =\begin{pmatrix}436 \\262 \end{pmatrix} \text{mod}(27) =\begin{pmatrix}4 \\ 19\end{pmatrix} $$
+
+Now we have the original four plaintext indexed numbers which cna be converted to the characters `meet` again. Retrieving our original messages.
+
 
 ## 3.15
 
-### Response
+We have shown that the Hill cipher succumbs to a known plaintext attack if
+sufficient plaintext–ciphertext pairs are provided. It is even easier to solve
+the Hill cipher if a chosen plaintext attack can be mounted. Describe such an
+attack.
+
+## Response
 
 ## 3.20
 
-### Response
+This problem explores the use of a one-time pad version of the Vigenère cipher.
+In this scheme, the key is a stream of random numbers between 0 and 26. For
+example, if the key is 3 19 5 . . . , then the first letter of plaintext is
+encrypted with a shift of 3 letters, the second with a shift of 19 letters, the
+third with a shift of 5 letters, and so on.
+
+- Encrypt the plaintext `sendmoremoney` with the key stream
+
+```
+9 0 1 7 23 15 21 14 11 11 2 8 9
+```
+
+- Using the ciphertext produced in part (a), find a key so that the cipher text
+  decrypts to the plaintext `cashnotneeded`.
+
+## Response
