@@ -275,6 +275,7 @@ Silence (a book about the spy Kim Philby):
 > The snow lay thick on the steps and the snowflakes driven by the wind looked
 > black in the headlights of the cars.
 
+
 - What is the encryption algorithm?
 
 - How secure is it?
@@ -285,6 +286,44 @@ Silence (a book about the spy Kim Philby):
   to the use of the last. Why?
 
 ## Response
+
+### Part A
+
+What is the encryption algorithm?
+
+The encryption algorithm is a substitution cipher.
+
+We use the sentence given to us by the textbook to populate the next letter in
+the alphabet with the unique characters as we come across them in the given
+sentnce.
+
+
+```
+Cipher Alphabet:    thesnowlayickpdfrvbg
+Plaintext Alphabet: abcdefghiklmnopqrstu
+```
+Applying the substitution to the letters in the message we get the following:
+
+
+```
+cipher:    SIDKHKDM AF HCRKIABIE SHIMC KD LFEAILA
+plaintext: dlpnbnpm iq bmrnlitlc dblmm np hqcilhi
+```
+```
+
+```
+
+
+### Part B
+
+How secure is it?
+
+### Part C
+
+To make the key distribution problem simple, both parties can agree to use the
+first or last sentence of a book as the key. To change the key, they simply need
+to agree on a new book. The use of the first sentence would be preferable to the
+use of the last. Why?
 
 ## 3.14
 
@@ -388,7 +427,8 @@ $$
 $$
 
 Now we have the original four plaintext indexed numbers which cna be converted
-to the characters `meet` again. Retrieving our original messages.
+to the characters `meet` again, continuing the routine allows us to retrieve the
+original plaintext message.
 
 ## 3.15
 
@@ -398,9 +438,6 @@ the Hill cipher if a chosen plaintext attack can be mounted. Describe such an
 attack.
 
 ## Response
-
-
-
 
 ## 3.20
 
