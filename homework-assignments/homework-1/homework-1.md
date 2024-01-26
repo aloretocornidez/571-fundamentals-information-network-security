@@ -298,7 +298,7 @@ Show your calculations and the result.
 B. Show the calculations for the corresponding decryption of the ciphertext to
 recover the original plaintext.
 
-## Response | Part A
+### Response | Part A
 
 First, the plaintext message has to be encoded to integers. In this case, the
 letters shall be encoded by their index in the alphabet.
@@ -308,9 +308,9 @@ alphabet. So index 27 shall be ' '. Following this encoding, the message is
 encoded into the following message:
 
 ```
-12 4 4 19 27 12 4 27 0 19 27 19 7 4 27 20 
+12 4 4 19 27 12 4 27 0 19 27 19 7 4 27 20
 18 20 0 11 27 15 11 0 2 4 27 0 19 27 19 4
-13 27 17 0 19 7 4 17 27 19 7 0 13 27 4 8 
+13 27 17 0 19 7 4 17 27 19 7 0 13 27 4 8
 6 7 19 27 14 2 11 14 2 10
 ```
 
@@ -353,14 +353,15 @@ Following this procedure renders the following ciphertext:
 
 `QHESMZFNWZNUZJRA ORXYTSBHLSWFHZPFESEKJXENUJIFEOWBZFH DUSE`
 
-### Response Part B
+### Response | Part B
 
 Following the same sort of procedure to decypher the text, we can take the
 inverse of the key matrix:
 
 $$
-\begin{pmatrix} 9 && 4 \\ 5 && 7 \end{pmatrix}^{-1} = \frac{1}{43}^{-1}\begin{pmatrix} 7 && -4 \\ -5 && 9\end{pmatrix} \text{mod}(27) =\begin{pmatrix}19 &&
-20 \\ 25 && 9\end{pmatrix}
+\begin{pmatrix} 9 && 4 \\ 5 && 7 \end{pmatrix}^{-1} =
+\frac{1}{43}^{-1}\begin{pmatrix} 7 && -4 \\ -5 && 9\end{pmatrix} \text{mod}(27)
+=\begin{pmatrix}19 && 20 \\ 25 && 9\end{pmatrix}
 $$
 
 Using this inverse matrix, we can then conduct the same operations on the
@@ -368,17 +369,26 @@ message to decrypt it.
 
 Doing the first four letters: `QHES` they are index as: `16 7 4 18`
 
-
-$$ \begin{pmatrix}19 && 20 \\ 25 && 9\end{pmatrix}\begin{pmatrix}6 \\ 7\end{pmatrix} \text{mod}(27) =\begin{pmatrix}16 \\ 7 \end{pmatrix}  =\begin{pmatrix}444 \\463\end{pmatrix} \text{mod}(27) =\begin{pmatrix}12 \\ 4\end{pmatrix} $$
+$$
+\begin{pmatrix}19 && 20 \\ 25 && 9\end{pmatrix}\begin{pmatrix}6 \\
+7\end{pmatrix} \text{mod}(27) =\begin{pmatrix}16 \\ 7 \end{pmatrix}
+=\begin{pmatrix}444 \\463\end{pmatrix} \text{mod}(27) =\begin{pmatrix}12 \\
+4\end{pmatrix}
+$$
 
 This gives the characters: `me`
 
 Doing the same for the following 2 characters:
 
-$$ \begin{pmatrix}19 && 20 \\ 25 && 9\end{pmatrix}\begin{pmatrix}6 \\ 7\end{pmatrix} \text{mod}(27) =\begin{pmatrix}4 \\ 18 \end{pmatrix}  =\begin{pmatrix}436 \\262 \end{pmatrix} \text{mod}(27) =\begin{pmatrix}4 \\ 19\end{pmatrix} $$
+$$
+\begin{pmatrix}19 && 20 \\ 25 && 9\end{pmatrix}\begin{pmatrix}6 \\
+7\end{pmatrix} \text{mod}(27) =\begin{pmatrix}4 \\ 18 \end{pmatrix}
+=\begin{pmatrix}436 \\262 \end{pmatrix} \text{mod}(27) =\begin{pmatrix}4 \\
+19\end{pmatrix}
+$$
 
-Now we have the original four plaintext indexed numbers which cna be converted to the characters `meet` again. Retrieving our original messages.
-
+Now we have the original four plaintext indexed numbers which cna be converted
+to the characters `meet` again. Retrieving our original messages.
 
 ## 3.15
 
