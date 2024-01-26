@@ -399,6 +399,9 @@ attack.
 
 ## Response
 
+
+
+
 ## 3.20
 
 This problem explores the use of a one-time pad version of the Vigenère cipher.
