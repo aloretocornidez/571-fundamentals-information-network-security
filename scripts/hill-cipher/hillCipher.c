@@ -106,6 +106,16 @@ void cipherEncode(int *src, int *dst, Parameters p) {
   }
 }
 
+void printFromIntegerArray(int* ptr)
+{
+  for(int i = 0; i < 13; i++)
+  {
+    printf("%c", ptr[i] + 'a');
+  }
+
+  printf("\n");
+}
+
 int main(int argc, char *argv[]) {
 
   char *messageArray;
@@ -162,10 +172,6 @@ int main(int argc, char *argv[]) {
 
   p.keyPtr = (int *)malloc(sizeof(int) * p.keyElements);
 
-  p.keyPtr[0] = 9;
-  p.keyPtr[1] = 4;
-  p.keyPtr[2] = 5;
-  p.keyPtr[3] = 7;
 
   printIndices(p, ptIndexArray);
 
@@ -180,6 +186,9 @@ int main(int argc, char *argv[]) {
 
   // printStringArray(ptCharArray);
   // printStringArray(messageArray);
+ 
+  // int myArray[13] = {21, 7 ,16, 6, 15, 17, 21, 7 ,15, 17, 16, 7, 1};
+  // printFromIntegerArray(myArray);
 
   free(messageArray);
   free(ptIndexArray);

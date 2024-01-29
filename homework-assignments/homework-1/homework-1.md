@@ -275,7 +275,6 @@ Silence (a book about the spy Kim Philby):
 > The snow lay thick on the steps and the snowflakes driven by the wind looked
 > black in the headlights of the cars.
 
-
 - What is the encryption algorithm?
 
 - How secure is it?
@@ -285,7 +284,7 @@ Silence (a book about the spy Kim Philby):
   need to agree on a new book. The use of the first sentence would be preferable
   to the use of the last. Why?
 
-## Response
+### Response
 
 ### Part A
 
@@ -295,28 +294,30 @@ The encryption algorithm is a substitution cipher.
 
 We use the sentence given to us by the textbook to populate the next letter in
 the alphabet with the unique characters as we come across them in the given
-sentnce.
-
+sentence.
 
 ```
+
 Cipher Alphabet:    thesnowlayickpdfrvbg
 Plaintext Alphabet: abcdefghiklmnopqrstu
 ```
-Applying the substitution to the letters in the message we get the following:
 
+Applying the substitution to the letters in the message we get the following:
 
 ```
 cipher:    SIDKHKDM AF HCRKIABIE SHIMC KD LFEAILA
-plaintext: dlpnbnpm iq bmrnlitlc dblmm np hqcilhi
+plaintext: basilisk to leviathan blake is contact
 ```
+
 ```
 
 ```
-
 
 ### Part B
 
 How secure is it?
+
+Since it is a simple substitution cipher, it is not very secure. 
 
 ### Part C
 
@@ -324,6 +325,8 @@ To make the key distribution problem simple, both parties can agree to use the
 first or last sentence of a book as the key. To change the key, they simply need
 to agree on a new book. The use of the first sentence would be preferable to the
 use of the last. Why?
+
+All letters of the key may not be populated if the last sentence is chosen, but if the first sentence is chosen, then all letters will eventually be populated.
 
 ## 3.14
 
@@ -437,7 +440,30 @@ sufficient plaintext–ciphertext pairs are provided. It is even easier to solve
 the Hill cipher if a chosen plaintext attack can be mounted. Describe such an
 attack.
 
-## Response
+### Response
+
+
+Consider the matrix $K$ with  elements $K_{ij}$ to consist of the column vectors $K_{j}$ where:
+
+$$K = \begin{bmatrix}
+K_{11} && ... && K_{1n} \\
+... && ... && ... \\
+K_{n1} && ... && K_{nn} \\
+\end{bmatrix}$$
+
+and 
+
+$$K = \begin{bmatrix}
+K_{1j} \\ ... \\ K_{1n}
+\end{bmatrix}$$
+
+The cipher-text of the following chosen plaintext n-grams reveals the columns of $K$:
+
+$$(B, A, A, ..., A, A) \leftrightarrow K_{1}$$
+$$(A, B, A, ..., A, A) \leftrightarrow K_{2}$$
+$$(A, A, A, ..., A, A) \leftrightarrow K_{n}$$
+
+
 
 ## 3.20
 
@@ -456,4 +482,40 @@ third with a shift of 5 letters, and so on.
 - Using the ciphertext produced in part (a), find a key so that the cipher text
   decrypts to the plaintext `cashnotneeded`.
 
-## Response
+### Response
+
+Given the Original Text:
+
+`Plaintext:     s  e n  d m  o  r  e m  o  n  e y`
+
+Take the indices of the letters: 
+
+`Index:         18 4 13 3 12 14 17 4 12 14 13 4 24`
+
+Shift the indices by three.
+
+`Shifting:      21 7 16 6 15 17 21 7 15 17 16 7 1`
+
+Render the cipher-text:
+
+`Cipher-text:   v  h q  g p  r  v  h p  r  q  h b`
+
+`cashnotneeded` has the following indices for the letters:
+
+`2 0 18 7 13 14 19 13 4 4 3 4 3`
+
+We can add the number needed to each index to cet the letters that we want:
+
+(21 + 7)mod26 = 28mod26 = 2, this means that 7 is the first key element.
+
+Following this line of thinking we get the key:
+
+Cipher Letters:         `21 7  16 6 15 17 21 7  15 17 16 7  1`
+
+Key to make decrypt:    `7  19 2  1 24 23 24 6  15 13 13 23 2`
+
+Goal State for Letters: `2  0  18 7 13 14 19 13 4  4  3  4  3`
+
+
+The key that makes `vhqgprvhprqhb` decrypt to `cashnotneeded` is `7 19 2 1 24 23 24 6 15 13 13 23 2`
+
