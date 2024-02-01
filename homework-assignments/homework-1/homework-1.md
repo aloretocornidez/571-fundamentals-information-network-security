@@ -247,6 +247,7 @@ $\therefore 550$ is the multiplicative inverse of 1769 and 550.
 
 Hint: What numbers have a factor in common with $p^{i}$?
 
+
 ### Response
 
 Since $p$ is prime, we know that the only possible values of $\text{GCD}(p,m) =
