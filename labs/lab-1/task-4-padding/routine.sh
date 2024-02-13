@@ -30,12 +30,15 @@ filenames=("p1" "p2" "p3")
 # empty file
 echo -n "" > ${output}
 
+# dump the hex contents into a file.
 for file  in ${filenames[@]}; do
-  
   echo "${file} padding" >> ${output}
   hexdump -C ./${file}.txt >> ${output}
   echo "${file} no padding" >> ${output}
   hexdump -C ./${file}-no-pad.txt >> ${output}
   echo  >> ${output}
 done
+
+
+
 
