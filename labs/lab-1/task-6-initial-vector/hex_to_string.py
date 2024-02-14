@@ -6,9 +6,9 @@ def xor(first, second):
     return bytearray(x ^ y for x, y in zip(first, second))
 
 
-message = "1234"
-known_hex1 = "b2d470107bb6fa446fac94e767a060af"
-known_hex2 = "657b163e72156cdf748b23965f071dd7"
+message = "b36ecfe90769ed003c7b9e737afc6bd5"
+known_IV = "4bc47bfe6f3b0222001a5acfc4b3e927"
+known_next_IV = "97593e57703b0222001a5acfc4b3e927"
 
 
 def main():
@@ -16,21 +16,21 @@ def main():
     # Convert ascii string to bytearray
 
     # MSG = input("What is your hex string?\n")
-    known_plaintext = bytes(message, "utf-8")
+    d1 = bytes(message, "utf-8")
 
     # Convert hex string to bytearray
-    known_cipher = bytearray.fromhex(known_hex1)
-    unknown_cipher = bytearray.fromhex(known_hex2)
+    d2 = bytearray.fromhex(known_IV)
+    d3 = bytearray.fromhex(known_next_IV)
 
-    r1 = xor(known_plaintext, known_cipher)  # generate keystream
-    r2 = xor(known_cipher, unknown_cipher)
-    r3 = xor(known_cipher, known_cipher)
+    r1 = xor(d1, d2)  # generate keystream
+    r2 = xor(d2, d3)
+    r3 = xor(d2, d2)
 
     print(r1.hex())  # print the keysream.
     print(r2.hex())
     print(r3.hex())
 
-    actualString = xor(r1, unknown_cipher).decode()  # generate original text.
+    actualString = xor(r1, d3).decode()  # generate original text.
     print(actualString)  # print original text.
 
 
