@@ -1,18 +1,20 @@
 #!/bin/bash
 # task 5 
-# ece 571 routine file containing the 
-# scripts used to execute the commands.
+# ece 571 routine file containing the scripts used to execute the commands.
 
 
 key=00112233445566778889aabbccddeeff
 iv=0102030405060708
+
+
+plaintext="plaintext"
 # Generate the random file. if it doesn't exist.
-if [ ! -f ./plaintext.txt ]; then
-  head -n 100 /dev/random | strings | sed 's/[ \t]//g' > plaintext.txt
+if [ ! -f ${plaintext} ]; then
+  head -n 100 /dev/random | strings | sed 's/[ \t]//g' > ${plaintext}
 fi
 
 ## encrypt the file 
-openssl enc -aes-128-cbc -e -in ./plaintext.txt -out ./original-encrypted.txt  -K ${key} -iv ${iv}
+openssl enc -aes-128-cbc -e -in ${plaintext} -out ./original-encrypted.txt  -K ${key} -iv ${iv}
 
 # create a backup of the encrypted file.
 cp ./original-encrypted.txt ./corrupted-encrypted.txt
@@ -26,10 +28,14 @@ openssl enc -aes-128-cbc -d -in ./original-encrypted.txt -out ./original-decrypt
 # decrypt the corrupted encrypted file.
 openssl enc -aes-128-cbc -d -in ./corrupted-encrypted.txt -out ./corrupted-decrypted.txt -K ${key} -iv ${iv} 
 
-# open the files in bless
-bless ./original-encrypted.txt ./corrupted-encrypted.txt ./original-decrypted.txt ./corrupted-decrypted.txt
+# generate the hexdumps
+hexdump ./corrupted-decrypted.txt > ./corrupted-decrypted.temp
+hexdump ./original-decrypted.txt > ./original-decrypted.temp
 
+head -n 15 ./original-decrypted.temp > ./original-decrypted.hex
+head -n 15 ./corrupted-decrypted.temp > ./corrupted-decrypted.hex
 
+clear && diff ./corrupted-decrypted.hex ./original-decrypted.hex
 
-
+rm *.txt *.temp *.hex
 

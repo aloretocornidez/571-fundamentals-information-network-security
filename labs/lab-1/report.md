@@ -363,8 +363,136 @@ CFB Mode:
 
 The ECB mode does not require padding because there is no feedback from previously encrypted blocks in the encryption process.
 
-Do Not Require Padding: CFB, OFB, CTR
 
+Running my script: 
+
+```sh
+#!/bin/bash
+
+# Create the files
+echo -n "12345" > f1.txt 
+echo -n "123456789a" > f2.txt 
+echo -n "123456789abcdefg" > f3.txt 
+
+# Encrypt the files.
+openssl enc -aes-128-cbc -e -in ./f1.txt -out ./5-bytes.txt  -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+openssl enc -aes-128-cbc -e -in ./f2.txt -out ./10-bytes.txt -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+openssl enc -aes-128-cbc -e -in ./f3.txt -out ./16-bytes.txt -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+
+# Decrypt the files.
+openssl enc -aes-128-cbc -d -in ./5-bytes.txt  -out ./p1.txt -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+openssl enc -aes-128-cbc -d -in ./10-bytes.txt -out ./p2.txt -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+openssl enc -aes-128-cbc -d -in ./16-bytes.txt -out ./p3.txt -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+
+# Decrypt the files using no pad
+openssl enc -aes-128-cbc -d -nopad -in ./5-bytes.txt  -out ./p1-no-pad.txt -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+openssl enc -aes-128-cbc -d -nopad -in ./10-bytes.txt -out ./p2-no-pad.txt -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+openssl enc -aes-128-cbc -d -nopad -in ./16-bytes.txt -out ./p3-no-pad.txt -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+
+
+# display the pad and nopad versios of the hexdump
+output="padding-display"
+filenames=("p1" "p2" "p3")
+
+# empty file
+echo -n "" > ${output}
+
+# dump the hex contents into a file.
+for file  in ${filenames[@]}; do
+  echo "${file} padding" >> ${output}
+  hexdump -C ./${file}.txt >> ${output}
+  echo "${file} no padding" >> ${output}
+  hexdump -C ./${file}-no-pad.txt >> ${output}
+  echo  >> ${output}
+done
+
+# display the padding
+clear && cat ${output}
+
+# remove extranous files.
+rm *.txt
+```
+
+We get the following output: 
+
+```
+p1 padding
+00000000  31 32 33 34 35                                    |12345|
+00000005
+p1 no padding
+00000000  31 32 33 34 35 0b 0b 0b  0b 0b 0b 0b 0b 0b 0b 0b  |12345...........|
+00000010
+
+p2 padding
+00000000  31 32 33 34 35 36 37 38  39 61                    |123456789a|
+0000000a
+p2 no padding
+00000000  31 32 33 34 35 36 37 38  39 61 06 06 06 06 06 06  |123456789a......|
+00000010
+
+p3 padding
+00000000  31 32 33 34 35 36 37 38  39 61 62 63 64 65 66 67  |123456789abcdefg|
+00000010
+p3 no padding
+00000000  31 32 33 34 35 36 37 38  39 61 62 63 64 65 66 67  |123456789abcdefg|
+00000010  10 10 10 10 10 10 10 10  10 10 10 10 10 10 10 10  |................|
+00000020
+```
+
+We can see that the block encrypts 16 bytes at a time, so the padding is done until bytes $\text{mod}(16)$ is zero.
 
 ## Task 5 | Error Propagation - Corrupted Cipher Text
+
+Running my script: 
+
+```sh
+#!/bin/bash
+
+key=00112233445566778889aabbccddeeff
+iv=0102030405060708
+
+# Generate the random file. if it doesn't exist.
+if [ ! -f ./plaintext.txt ]; then
+  head -n 100 /dev/random | strings | sed 's/[ \t]//g' > plaintext.txt
+fi
+
+## encrypt the file 
+openssl enc -aes-128-cbc -e -in ./plaintext.txt -out ./original-encrypted.txt  -K ${key} -iv ${iv}
+
+# create a backup of the encrypted file.
+cp ./original-encrypted.txt ./corrupted-encrypted.txt
+
+# corrupt the file
+sed -i '2s/[abcdefghijklmopqrstuvwxyz1234567890]/n/' ./corrupted-encrypted.txt
+
+# decrypt the original encrypted file.
+openssl enc -aes-128-cbc -d -in ./original-encrypted.txt -out ./original-decrypted.txt -K ${key} -iv ${iv}
+
+# decrypt the corrupted encrypted file.
+openssl enc -aes-128-cbc -d -in ./corrupted-encrypted.txt -out ./corrupted-decrypted.txt -K ${key} -iv ${iv} 
+
+# generate the hexdumps
+hexdump ./corrupted-decrypted.txt > ./corrupted-decrypted.temp
+hexdump ./original-decrypted.txt > ./original-decrypted.temp
+
+head -n 15 ./original-decrypted.temp > ./original-decrypted.hex
+head -n 15 ./corrupted-decrypted.temp > ./corrupted-decrypted.hex
+
+clear && diff ./corrupted-decrypted.hex ./original-decrypted.hex
+```
+
+Gives the following differences between the two texts:
+
+```
+10,11c10,11
+< 0000090 5dd8 dae0 406d 4dcb ed56 8127 ef89 5b89
+< 00000a0 547a 6c51 3047 460a 3f65 0a39 4562 6150
+---
+> 0000090 6376 0a2c 7b64 3922 7e27 6b0a 407c 5a0a
+> 00000a0 547a 6c51 3047 460a 3f65 0a22 4562 6150
+```
+
+As you can see, only two blocks are actually affected. The error is fixed after the cipher 'synchronizes' itself again.
+
+
 ## Task 6
