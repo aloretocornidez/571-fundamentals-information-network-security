@@ -11,13 +11,15 @@
 # tail -c +55 ./encrypted-image.bmp > body 
 # cat header body > new-image-with-original-header.bmp
 
-
+image="pic_original.bmp"
+image="./Archlinux-icon-crystal-64.bmp"
 
 # Encrypt the image contents. 
-openssl enc -aes-128-cfb -e -in pic_original.bmp -out encrypted-image.bmp -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+openssl enc -aes-128-cfb -e -in ${image} -out encrypted-image.bmp -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+# openssl enc -aes-128-ecb -e -in ${image} -out encrypted-image.bmp -K 00112233445566778889aabbccddeeff
 
 # get the header of the original image.
-head -c 54 ./pic_original.bmp > header 
+head -c 54 ${image} > header 
 
 # get the body of the encrypted image.
 tail -c +55 ./encrypted-image.bmp > body 

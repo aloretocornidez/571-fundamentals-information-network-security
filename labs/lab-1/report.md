@@ -244,13 +244,126 @@ quickly.
 
 
 ## Task 2 | Ciphers and Modes
+Running the following commands we are able to encrypt the plaintext:
+
+```sh
+
+key="00112233445566778889aabbccddeeff"
+iv="0102030405060708"
+
+
+# create and save the files
+openssl enc -aria-256-cbc -e -in plain.txt -out cipher.bin -K ${key} -iv ${iv} 
+mv cipher.bin aria-256-cbc-cipher.bin
+
+openssl enc -aes-128-cbc -e -in plain.txt -out cipher.bin -K ${key} -iv ${iv} 
+mv cipher.bin aes-128-cbc-cipher.bin
+
+openssl enc -aes-128-cfb -e -in plain.txt -out cipher.bin -K ${key} -iv ${iv} 
+mv cipher.bin aes-128-cfb-cipher.bin
+
+
+# create a hexdump.
+ hexdump aes-128-cbc-cipher.bin >> aes-128-cbc-cipher.hex
+ hexdump aes-128-cfb-cipher.bin >> aes-128-cfb-cipher.hex
+ hexdump aria-256-cbc-cipher.bin >> aria-256-cbc-cipher.hex
+
+
+```
+
+That gives the following three hexdumps (only the first 5 dumps are shown): 
+
+```
+# aes-128-cbc
+0000000 0f3f d165 ae09 7199 a242 7bc6 e87b 9c32
+0000010 e52e 914e d6eb 0773 38fd 40c8 a3fd d965
+0000020 63fe 4752 1597 0239 8a53 9dbe 2256 6e36
+0000030 f1aa b697 b3ca 043e 220d e1a4 c5ca 08ea
+0000040 5397 c586 bd0b c9e6 21de 3356 c8bf 2eb1
+
+# aria-256-cbc
+0000000 9ef2 47be 0a01 c090 b466 5e7b 1df8 ffa7
+0000010 173c 6f35 62f4 25d4 dbf5 d690 5a1c 11f5
+0000020 4764 ae1d 5615 8779 b23b bdc5 d132 0a66
+0000030 0864 98e8 2f57 ba97 9a72 8c7f 6945 6a0b
+0000040 3d6c 272c a991 916c 243b d06c 3626 e8eb
+
+# aes-128-cfb
+0000000 eef3 05ea 4cae b0d9 eddd 699f 6200 4d32
+0000010 36ef 8bed 6ea6 5eaf fc9d d7bd 3223 4ab6
+0000020 c60e c1cd f812 d12c 83d4 0f0c 74f7 d429
+0000030 f6dd 0481 8353 2de2 8140 278a 1c4a c435
+0000040 dd36 b9a9 79b7 d950 00d4 9503 fb09 d195
+
+```
+
+
 ## Task 3 | ECB vs CBC
+
+### ECB Mode
+When encrypting the image using ECB encoding with the following commands, (no need for an initialization vector):
+
+```sh
+# Encrypt the image contents. 
+openssl enc -aes-128-ecb -e -in pic_original.bmp -out encrypted-image.bmp -K 00112233445566778889aabbccddeeff
+
+# get the header of the original image.
+head -c 54 ./pic_original.bmp > header 
+
+# get the body of the encrypted image.
+tail -c +55 ./encrypted-image.bmp > body 
+
+# Make make the new image.
+cat header body > new-image-with-original-header.bmp
+
+```
+
+We get the following image:
+
+![[task-3-ecb-vs-cbc/new-image-with-original-header.bmp]]
+
+### CFB Mode
+However, when using CFB encryption, using the following script:
+
+```sh
+# Encrypt the image contents. 
+openssl enc -aes-128-cfb -e -in pic_original.bmp -out encrypted-image.bmp -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+# openssl enc -aes-128-ecb -e -in pic_original.bmp -out encrypted-image.bmp -K 00112233445566778889aabbccddeeff
+
+# get the header of the original image.
+head -c 54 ./pic_original.bmp > header 
+
+# get the body of the encrypted image.
+tail -c +55 ./encrypted-image.bmp > body 
+
+# Make make the new image.
+cat header body > new-image-with-original-header.bmp
+```
+
+We get the following image:
+
+![[task-3-ecb-vs-cbc/new-image-with-original-header.bmp]]
+
+As we can see, when the image being used has a low frequency measurement, the encryption does not work as well when using ECB mode encryption. 
+
+### Personal Image
+
+When using a personal image, this is also the case with both ECB and CFB modes.
+
+Original:
+![[task-3-ecb-vs-cbc/Archlinux-icon-crystal-64.bmp]]
+
+ECB Mode: 
+![[Pasted image 20240214214717.png]]
+
+CFB Mode:
+![[Pasted image 20240214214800.png]]
+
 ## Task 4 | Padding 
 
-Require Padding: ECB CBC 
+The ECB mode does not require padding because there is no feedback from previously encrypted blocks in the encryption process.
 
 Do Not Require Padding: CFB, OFB, CTR
-
 
 
 ## Task 5 | Error Propagation - Corrupted Cipher Text
