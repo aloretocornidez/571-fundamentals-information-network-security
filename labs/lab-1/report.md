@@ -320,7 +320,7 @@ cat header body > new-image-with-original-header.bmp
 
 We get the following image:
 
-![[task-3-ecb-vs-cbc/new-image-with-original-header.bmp]]
+![[Pasted image 20240214232602.png]]
 
 ### CFB Mode
 However, when using CFB encryption, using the following script:
@@ -342,7 +342,7 @@ cat header body > new-image-with-original-header.bmp
 
 We get the following image:
 
-![[task-3-ecb-vs-cbc/new-image-with-original-header.bmp]]
+![[Pasted image 20240214232523.png]]
 
 As we can see, when the image being used has a low frequency measurement, the encryption does not work as well when using ECB mode encryption. 
 
@@ -494,5 +494,132 @@ Gives the following differences between the two texts:
 
 As you can see, only two blocks are actually affected. The error is fixed after the cipher 'synchronizes' itself again.
 
+## Task 6 | Initialization Vectors
 
-## Task 6
+### Task 6.1
+
+Using the following script to encrypt the same file twice (using the same key and iv): 
+
+```sh
+key1=00112233445566778889aabbccddeeff
+key2=aabbccddeeff00112233445566778889
+iv1=0102030405060708
+iv2=0506070801020304
+
+input="words"
+
+
+# encrypt the same file using the same iv and key
+openssl enc -aes-128-cbc -e -in ${input} -out ./encrypted-iv1-k1.txt  -K ${key1} -iv ${iv1}
+openssl enc -aes-128-cbc -e -in ${input} -out ./encrypted-iv2-k1.txt  -K ${key1} -iv ${iv1}
+
+# generate a hexdump of the files.
+hexdump ./encrypted-iv1-k1.txt > ./encrypted-iv1-k1.hex
+hexdump ./encrypted-iv2-k1.txt > ./encrypted-iv2-k1.hex
+
+# compare the hex dumps
+clear && echo diff && diff ./encrypted-iv1-k1.hex ./encrypted-iv2-k1.hex && echo diff
+```
+
+We get the following output:
+
+```
+diff
+diff
+```
+
+Meaning that both of the files are the same. This means that the cbc encryption mode is deterministic. This could have security vulnerabilities.
+
+#### Different IVs renders two files that are very different
+
+In this case, the second of the two encryption commands are changed:
+
+```sh
+# encrypt the same file using the same iv and key
+openssl enc -aes-128-cbc -e -in ${input} -out ./encrypted-iv1-k1.txt  -K ${key1} -iv ${iv1}
+openssl enc -aes-128-cbc -e -in ${input} -out ./encrypted-iv2-k1.txt  -K ${key1} -iv ${iv2}
+```
+
+And the diff between those files is large:
+
+![[Pasted image 20240214230302.png]]
+
+The deterministic nature of the encryption algorithms means careful IV selection is paramount in order to ensure any form of security.
+
+
+### Task 6.2 
+
+Modifying the `sample_code.py` file to XOR the message and hex representation of the files as follows:
+
+```py
+#!/usr/bin/python3
+
+
+# XOR two bytearrays
+def xor(first, second):
+    return bytearray(x ^ y for x, y in zip(first, second))
+
+
+MSG = "This is a known message!"
+HEX_1 = "a469b1c502c1cab966965e50425438e1bb1b5f9037a4c159"
+HEX_2 = "bf73bcd3509299d566c35b5d450337e1bb175f903fafc159"
+
+
+def main():
+
+    # Convert ascii string to bytearray
+    D1 = bytes(MSG, "utf-8")
+
+    # Convert hex string to bytearray
+    D2 = bytearray.fromhex(HEX_1)
+    D3 = bytearray.fromhex(HEX_2)
+
+    r1 = xor(D1, D2)  # generate keystream
+
+    actualString = xor(r1, D3).decode()  # generate original text.
+    print(actualString)  # print original text.
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+Gives the following otuput:
+
+```
+Order: Launch a missile!
+```
+
+If the IV is not updated, it is possible to decipher any message sent as long as the key does not change. This is due to the deterministic nature of the cipher allowing us to generate a keysteam that is then able to be XORed with the ciphertext to produce the plaintext.
+
+### Task 6.3
+
+We can generate the hex representations of "Yes" and "No" with the following code;
+
+```py
+yes = bytes("Yes", "utf-8").hex()  # get the hex representation of yes
+no = bytes("No", "utf-8").hex()  # get the hex representation of no
+# print the hex values from the ascii strings.
+print(f"Yes: {yes}")  # 5965730d0d0d0d0d0d0d0d0d0d0d0d0d
+print(f"No: {no}")    # 4e6f0e0e0e0e0e0e0e0e0e0e0e0e0e0e
+```
+
+Note: The padding is different for a "Yes" guess and a "No" guess.
+
+After that, we can run the container to get the values for the IVs and target ciphertext.
+
+
+
+By guessing "No" the first time, we get the generated plaintext:
+![[Pasted image 20240214231834.png]]
+
+We can see that this guess does not match the ciphertext, so we did not get guess correctly. 
+
+
+Restarting the container and getting a new ciphertext, we then guess yes:
+
+![[Pasted image 20240214232018.png]]
+
+In this case, we  see that the first part of our generated plaintext matches Bob's ciphertext, so now we can finally say, "We're In."
+

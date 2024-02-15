@@ -37,5 +37,5 @@ head -n 15 ./corrupted-decrypted.temp > ./corrupted-decrypted.hex
 
 clear && diff ./corrupted-decrypted.hex ./original-decrypted.hex
 
-rm *.txt *.temp *.hex
+rm *.txt *.temp *.hex ${plaintext}
 

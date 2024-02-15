@@ -21,12 +21,6 @@ def main():
     D3 = bytearray.fromhex(HEX_2)
 
     r1 = xor(D1, D2)  # generate keystream
-    r2 = xor(D2, D3)
-    r3 = xor(D2, D2)
-
-    print(r1.hex())  # print the keysream.
-    print(r2.hex())
-    print(r3.hex())
 
     actualString = xor(r1, D3).decode()  # generate original text.
     print(actualString)  # print original text.

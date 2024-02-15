@@ -13,26 +13,16 @@ iv2=0506070801020304
 input="words"
 
 
-
-# encrypt the file using the same iv and key
-openssl enc -aes-128-ofb -e -in ${input} -out ./encrypted-iv1-k1.txt  -K ${key1} -iv ${iv1}
-
-# do part a
-openssl enc -aes-128-ofb -e -in ${input} -out ./encrypted-iv1-k2.txt  -K ${key1} -iv ${iv1}
-
-# do part b
-openssl enc -aes-128-ofb -e -in ${input} -out ./encrypted-iv2-k2.txt  -K ${key2} -iv ${iv2}
+# encrypt the same file using the same iv and key
+openssl enc -aes-128-cbc -e -in ${input} -out ./encrypted-iv1-k1.txt  -K ${key1} -iv ${iv1}
+openssl enc -aes-128-cbc -e -in ${input} -out ./encrypted-iv2-k1.txt  -K ${key1} -iv ${iv1}
+# openssl enc -aes-128-cbc -e -in ${input} -out ./encrypted-iv2-k1.txt  -K ${key1} -iv ${iv2}
 
 # generate a hexdump of the files.
 hexdump ./encrypted-iv1-k1.txt > ./encrypted-iv1-k1.hex
-hexdump ./encrypted-iv1-k2.txt > ./encrypted-iv1-k2.hex
-hexdump ./encrypted-iv2-k2.txt > ./encrypted-iv2-k2.hex
+hexdump ./encrypted-iv2-k1.txt > ./encrypted-iv2-k1.hex
 
-clear
-echo "Diff"
-diff ./encrypted-iv1-k1.hex ./encrypted-iv1-k2.hex 
-echo "Diff Complete"
-# diff ./encrypted-iv1-k1.hex ./encrypted-iv1-k2.hex ./encrypted-iv2-k2.hex
+clear && echo diff && diff ./encrypted-iv1-k1.hex ./encrypted-iv2-k1.hex && echo diff
 
 rm *.txt *.hex
 
