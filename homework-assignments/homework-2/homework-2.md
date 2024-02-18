@@ -1,4 +1,4 @@
-# ECE 571 | Cryptography and Network Security | Homework 1
+# ECE 571 | Cryptography and Network Security | Homework 2
 
 Name: Alan Manuel Loreto Cornídez
 
