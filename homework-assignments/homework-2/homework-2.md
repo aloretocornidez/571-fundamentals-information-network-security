@@ -239,13 +239,24 @@ They are not the same.
 
 a. How many S-boxes get different inputs compared to the case of an all-zero plaintext, in the first round of DES?
 
+Only one S-Box gets different inputs compared to all zero plaintext due to the lack of a feedback element. 
+
 b. What is the number of output bits which are different compared to the input after the first round?
 
-c. How many output bits have actually changed after the first round compared to the case of an all-zero plaintext (consider only one round). Does DES exhibit the avalanche effect (small changes in the plaintext yield significant changes in the ciphertext)?
+Only one output bit is different between an all zero plain-text and bit flipped 57 (in this case, bit 9)
+
+c. How many output bits have actually changed after the first round compared to the case of an all-zero plain-text (consider only one round). Does DES exhibit the avalanche effect (small changes in the plain-text yield significant changes in the ciphertext)?
+
+Only one output bit changes when using an all zero plaintext. However, DES does exhibit an avalanche effect as more rounds are used (up to a point of diminishing returns, in this case, ~16 rounds)
 
 Do not forget to apply the initial permutation on the plaintext before passing it through the DES round.
 
-<!-- TODO -->
+![[Pasted image 20240217224512.png]]
+![[Pasted image 20240217224519.png]]
+![[Pasted image 20240217224527.png]]
+Images used from : [a DES calculator online](https://simewu.com/des/)
+
+
 
 
 
