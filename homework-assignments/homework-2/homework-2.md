@@ -134,11 +134,11 @@ No, the ourput $P_{3}$ only depends on $C_{2}$ and $C_{3}$.
 
 - Suppose that there is a bit error in the source version of $P_{1}$. Through how many cipher-text blocks is this error propagated? What is the effect at the receiver?
 
-![[Pasted image 20240217222750.png]]
+![](./attachments/Pasted image 20240217222750.png)
 
 An error in $P_{1}$ affects $C_{1}$. In addition, since $C_1$ is an input to the calculation of $C_{2}$, $C_{2}$ is also affected. This effect carries out through all of the blocks, so the entire message is affected. However, at the receiving end, the decryption algorithm restores the correct plain-text for blocks except the one in error. 
 
-![[Pasted image 20240217222829.png]]
+![](./attachments/Pasted image 20240217222829.png)
 
 This is because the decryption uses the erroneous cipher in both the decryption and encryption steps, so the error is cancelled in all but the initially corrupted block.
 
@@ -251,9 +251,9 @@ Only one output bit changes when using an all zero plaintext. However, DES does 
 
 Do not forget to apply the initial permutation on the plaintext before passing it through the DES round.
 
-![[Pasted image 20240217224512.png]]
-![[Pasted image 20240217224519.png]]
-![[Pasted image 20240217224527.png]]
+![](./attachments/Pasted image 20240217224512.png)
+![](./attachments/Pasted image 20240217224519.png)
+![](./attachments/Pasted image 20240217224527.png)
 Images used from : [a DES calculator online](https://simewu.com/des/)
 
 
@@ -270,11 +270,11 @@ The modified CBC method will properly cipher and decipher the text. In addition,
 
 Here is an example of the CBC normal mode:
 
-![[Pasted image 20240217212559.png]]
+![](./attachments/Pasted image 20240217212559.png)
 
 And here is the same message en/decrypted using the modified CBC mode:
 
-![[Pasted image 20240217212625.png]]
+![](./attachments/Pasted image 20240217212625.png)
 
 As you can see, both of the methods render the same plaintext/cipher text combo.
 
@@ -285,3 +285,22 @@ Find keys $K$ such that:
 $$\text{DES}_{K}(\text{DES}_{K}(x)) = x, \forall x$$
 
 Such a key is sometimes called a “weak” key. How many weak keys can you find? To solve this problem you need to look up the exact key schedule generation algorithm for DES. For details refer to [this site](http://page.math.tu-berlin.de/~kant/teaching/hess/krypto-ws2006/des.htm). (Show your work or you will receive zero credit!)
+
+
+We can look up information regardin gthe key schedule for DES:
+
+![](./attachments/Pasted image 20240217231234.png)
+
+
+This set of keys are weak because the 56 bit key i broken up into 16 subkeys when running the DES key schedule. One key is used in each round. The weak keys produce the same subkeys for all 16 rounds, thus, it is like.
+Weak Keys:
+- 0x0101010101010101
+- 0xFEFEFEFEFEFEFEFE: 
+- 0xE0E0E0E0F1F1F1F1
+- 0x1F1F1F1F0E0E0E0E
+
+Not Considering parity bits alsp causes the keys to be weak:
+- 0x0000000000000000
+- 0xFFFFFFFFFFFFFFFF
+- 0xE1E1E1E1F0F0F0F0
+- 0x1E1E1E1E0F0F0F0F
