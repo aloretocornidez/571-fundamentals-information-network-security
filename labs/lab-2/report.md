@@ -142,7 +142,7 @@ It was interesting to do on my system. Here was the output from the watch comman
 
 ![[Pasted image 20240227235706.png]]
 
-The output never changed from 256, meaning I always had 256 bits of entropy available. This is a good thing for the purposes of random number generation I guess.
+The output never changed from 256, meaning I always had 256 bits of entropy available. This is a good thing for the purposes of random number generation I guess. I have a feeling that this happened is because of the system that I am using. I am on the Arch Linux Kernel with running and Xorg display server and the KDE Plasma desktop environment. This is different than running an Ubuntu virtual machine through a host windows operating system, so this is likely the reason for my differing output when comparing to other students.
 
 
 ## Task 4 | Get Pseudo Random Numbers
