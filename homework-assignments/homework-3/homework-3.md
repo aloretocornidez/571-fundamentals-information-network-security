@@ -1,4 +1,4 @@
-# ECE 571 | Cryptography and Network Security | Homework 3
+# ECE 570 | Cryptography and Network Security | Homework 3
 
 Name: Alan Manuel Loreto Cornídez
 
@@ -8,15 +8,15 @@ Due Date: February 19th, 2024
 
 The data authentication algorithm, described in Section 12.6 , can be defined as using the cipher block chaining (CBC) mode of operation of DES with an initialization vector of zero (Figure12.7). Show that the same result can be produced using the cipher feedback mode.
 
-![[Pasted image 20240310203047.png]]
+![](./attachments/Pasted image 20240310203047.png)
 
 
 ### Answer
 
 In order to achieve the same output as the CBC mode of operation in DES using the CFB mode you need to set the initialization vector to zero, this allows the cipher to behave similarly to the CBC mode. 
 
-![[Pasted image 20240311180456.png]]
-![[Pasted image 20240311180442.png]]
+![](./attachments/Pasted image 20240311180456.png)
+![](./attachments/Pasted image 20240311180442.png)
 
 
 
@@ -189,7 +189,7 @@ $$t = r^{-1}\mod n$$
 
 Next, Bob gets Alice to authenticate (sign) $X$ with her private key (as in Figure 9.3 ), thereby decrypting $X$. Alice returns $Y = X^{d}\mod n$. Show how Bob can use the information now available to him to determine $M$.
 
-![[Pasted image 20240310210313.png]]
+![](./attachments/Pasted image 20240310210313.png)
 
 
 
@@ -222,7 +222,7 @@ $$r^{-1}X^{d}\mod n = r^{-1}Z^{d}C^{d}\mod n = C^{d}\mod n = M$$
 
 
    
-   ![[Pasted image 20240310211601.png]]
+   ![](./attachments/Pasted image 20240310211601.png)
    
 1. Consider the following hash function. Messages are in the form of a sequence of numbers in $Z_{n,}M = (a_{1}, a_{2}, ..., a_{t})$. The hash value $h$ is calculated as $(\sum\limits_{i=1}^{t} a_{i})$ for some predefined value $n$. Does this hash function satisfy any of the requirements for a hash function listed in Table 11.1 ? Explain your answer.
 2. Repeat part (a) for the hash function $h = (\sum\limits_{i=1}^{t}(a_{i})^{2})\mod n$
@@ -263,7 +263,7 @@ Collision Resistant (Strong Collision Resistant): No, since the hash function is
 
 $$M = (189, 632, 900, 722, 349)$$
 
-![[Pasted image 20240312141808.png]]
+![](./attachments/Pasted image 20240312141808.png)
 
 $$H(M) = 121$$
 
@@ -280,7 +280,7 @@ following matrix shows the 2-bit word sent for each message
 under each key:
 
 
-![[Pasted image 20240310212223.png]]
+![](./attachments/Pasted image 20240310212223.png)
 
 1. The preceding matrix is in a useful form for Alice. Construct a matrix with the same information that would be more useful for Bob.
 2. What is the probability that someone else can successfully impersonate Alice?
