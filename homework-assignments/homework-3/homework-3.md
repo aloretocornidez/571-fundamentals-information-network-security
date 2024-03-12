@@ -192,7 +192,33 @@ Next, Bob gets Alice to authenticate (sign) $X$ with her private key (as in Figu
 ![[Pasted image 20240310210313.png]]
 
 
-### Answer | TODO
+
+
+### Answer
+
+Recall, the intercepted message is: 
+
+$$M = C^{d}\mod n$$
+
+Bob can use the returned message from Alice (which is the message that was intercepted and encrypted with Bob's values):
+
+$$Y = X^{d}\mod n$$
+
+and encrypt it with the multiplicative inverse of his random value:
+
+$$t = r^{-1}\mod n$$
+
+Thus, giving the following state:
+
+$$tY \mod n = r^{-1}X^{d}\mod n$$
+
+Since $Z = r^{e}\mod n$ then $r = Z^{d}\mod n$, thus, we can calculate the original message, $C^{d}\mod n$.
+
+$$r^{-1}X^{d}\mod n = r^{-1}Z^{d}C^{d}\mod n$$
+
+$$r^{-1}Z^{d}C^{d}\mod n = C^{d}\mod n = M$$
+
+
 
 ## Problem 11.3
 
