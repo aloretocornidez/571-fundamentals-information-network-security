@@ -214,9 +214,7 @@ $$tY \mod n = r^{-1}X^{d}\mod n$$
 
 Since $Z = r^{e}\mod n$ then $r = Z^{d}\mod n$, thus, we can calculate the original message, $C^{d}\mod n$.
 
-$$r^{-1}X^{d}\mod n = r^{-1}Z^{d}C^{d}\mod n$$
-
-$$r^{-1}Z^{d}C^{d}\mod n = C^{d}\mod n = M$$
+$$r^{-1}X^{d}\mod n = r^{-1}Z^{d}C^{d}\mod n = C^{d}\mod n = M$$
 
 
 
@@ -230,7 +228,46 @@ $$r^{-1}Z^{d}C^{d}\mod n = C^{d}\mod n = M$$
 2. Repeat part (a) for the hash function $h = (\sum\limits_{i=1}^{t}(a_{i})^{2})\mod n$
 3. Calculate the hash function of part (b) for $M = (189, 632, 900, 722, 349)$ and $n =989$
 
-### Answer | TODO
+### Answer
+
+#### Part A 
+
+Variable Input Size: Yes, this hash function can have inputs of multiple sizes
+
+Fixed Output Size: No, the hash function does not output to a fixed output size. A larger input size (both in number of terms and magnitude of the inputs) will make the output of the hash function grow.
+
+Efficiency: The hash function has a time complexity of $O(n)$ because there is a running sum of all of the terms in the input. This is relatively simple.
+
+Preimage Resistant (One-Way Property): No, this propery does not work. $y = 1, H(1) = 1$
+
+Second Preimage Resistant (Weak Collision Resistant): No, this property is not present: $x = \{1, 3\}, y = \{2, 2\}, H(x) = 4, H(y) = 4$
+
+Collision Resistant (Strong Collision Resistant): No, since the function is not Second Pre-image Resistant.
+
+#### Part B
+
+Variable Input Size: Yes, the input can be of arbitrary length.
+
+Fixed Output Size: Yes, different inputs can all be limited to the same size because of the $\mod n$. The size of the output is $n$
+
+
+Efficiency: This is a relatively simple algorithm, however, efficiency depends on software and the ability to calculate squared numbers.
+
+Pre-image Resistant (One-Way Property): This is true for inputs that are not equal to one. Assuming this condition, we can say that this hash function satisfies the one-way property. If the inputs are at least as larger as $\sqrt {n}$, this is also true.
+
+Second Pre-image Resistant (Weak Collision Resistant): This depends on the $n$ that is used to modulo the input. However, for $n = 10$, we can calculate $y = \{2, 3\}, H(y) = 3, x =\{8, 7\}, H(x) = 3$, so in this case, the hash function is not Weak collision resistant.
+
+Collision Resistant (Strong Collision Resistant): No, since the hash function is not weak collision resistant, the hash function is not Strong collision resistant.
+
+#### Part C
+
+$$M = (189, 632, 900, 722, 349)$$
+
+![[Pasted image 20240312141808.png]]
+
+$$H(M) = 121$$
+
+
 
 ## Problem 12.9
 
@@ -249,7 +286,48 @@ under each key:
 2. What is the probability that someone else can successfully impersonate Alice?
 3. What is the probability that someone can replace an intercepted message with another message successfully?
 
-### Answer | TODO
 
 
+
+### Answer
+
+#### Part A
+
+The table for bob would look something like this:
+
+|         | Key |     |     |     |
+| ------- | --- | --- | --- | --- |
+| Message | 1   | 2   | 3   | 4   |
+| 0       | 00  | 10  | 01  | 11  |
+| 1       | 01  | 00  | 11  | 10  |
+
+
+This table makes it easier for bob to decipher the message if knows what key the message is encrypted with.
+
+Another way to play the same data is by arranging the table by ciphertext and message and them populate the cells with the key:
+
+|        |     | Message |     |
+| ------ | --- | ------- | --- |
+|        |     | 0       | 1   |
+| Cipher | 00  | 1       | 2   |
+|        | 01  | 3       | 1   |
+|        | 10  | 2       | 4   |
+|        | 11  | 4       | 2   |
+
+
+#### Part B 
+
+We can see that there are 4 keys, and only two possible plain-text messages. This means that there are 8 total real mappings into the cipher text.
+
+However, there are 16 total possible mappings from plaintext to ciphertext (2 bits \* 4 keys = 16).
+
+Assuming the impersonator knows the system being used, they can randomly send messages and send a real possible message 50\% of the time. Since there are 8 real mappings and 16 possible mappings. 
+
+$$\frac{8}{16} = 50\%$$
+
+However, this encryption scheme is vulnerable to a chosen plain-text attack similar to the one in problem 9.8
+
+#### Part C
+
+When using a chosen plain-text attack the probability that the impersonator can successfully intercept and replace the message successfully reaches 100\% as long as the impersonator has time to analyze the scheme. However, if only one attempt is possible, then the probability is only 50\% and is lower if the impersonator wants to send a specific message. In the case that the attacker wants to send the opposite of the actual message, the probability becomes 25\%.=
 
