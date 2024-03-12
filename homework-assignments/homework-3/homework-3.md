@@ -11,12 +11,28 @@ The data authentication algorithm, described in Section 12.6 , can be defined as
 ![[Pasted image 20240310203047.png]]
 
 
+### Answer
+
+In order to achieve the same output as the CBC mode of operation in DES using the CFB mode you need to set the initialization vector to zero, this allows the cipher to behave similarly to the CBC mode. 
+
+![[Pasted image 20240311180456.png]]
+![[Pasted image 20240311180442.png]]
+
 
 
 ## Problem 12.3 
 
 
 At the beginning of Section 12.6, it was noted that given the CBC MAC of a one-block message $X$, say $T = MAC(K, X)$,  the adversary immediately knows the CBC MAC for the two-block message $X||(X \oplus T)$ since this is once again $T$. Justify this statement. 
+
+
+### Answer
+For a single block: $$T = E (K, X)$$
+
+And for two blocks:  $$E(k, (T \oplus (x \oplus T))) = E(k, x) = T$$
+
+Therefore, the adversary knows the CBC MAC for the two block message if the CBC MAC is given for the one-block message.
+
 
 
 ## Problem 13.8
@@ -50,27 +66,99 @@ bits of the message are 011, then the first three keys of the signature are $k1,
 4. What, if any, practical problems does this scheme present?
 
 
+### Answer
+
+1. The receiver requires the keys used to sign the message in order to validate the received message using the system encryption parameters.
+2. The technique is only secure if we can assume the encryption process is secure. However, this technique is vulnerable to a known plain-text attack.
+3. Secret keys can be used $n$ times assuming $2n$ signatures. If an attacker has access to $n$ signed messages, then cracking the keys is not (relatively) computationally expensive at that point.
+4. The number of keys that are required for this system is quite large since new keys need to be generated as soon as they are used, not to mention, the keys need to be sent over the network (or communication medium) as well.
 
 ## Problem 4 
 
-The following two sub problems involve Fermat’s Theorem (same as problems 2.20 and 2.22
-from the textbook).
+The following two sub problems involve Fermat’s Theorem (same as problems 2.20 and 2.22 from the textbook).
 
 1. Using Fermat's Theorem, find $3^{201}\mod 11$
 2. Using Fermat's Theorem, find a number $x$ between $0$ and $28$ with $x^{85}$ congruent to $6 \mod 29$. You should not use any brute force searching).
 
+### Answer
+
+#### Part 1 
+
+$$a^{p-1} \equiv a \mod p$$
+
+$$3^{201} \mod 11 = 3 \times 3^{10 \times 20} = 3 \times 1 \mod 11 = 3$$
+
+#### Part 2
+
+$$x = [0,28]$$
+
+$$x^{85} \equiv 6 \mod 29$$
+
+$$a^{p} \equiv a \mod p$$
+
+$$a = 6, p = 29$$
+
+
+$$6 \times 6^{28 \times 3} \equiv 6 \mod 29$$
+
+
+$$x = 6$$
+
+
+
 ## Problem 5
 
-The following two sub problems involve Euler’s Theorem (same as problems 2.23 and 2.24
-from the textbook). 
+The following two sub problems involve Euler’s Theorem (same as problems 2.23 and 2.24 from the textbook). 
 
 1. Using Euler’s Theorem, find a number a between 0 and 9 such that a is congruent to $7^{1000}\mod 10$. (note: this is the same as the last digit of the decimal expansion of $7^{1000}$)
-2. Using Euler’s Theorem, find a number $x$ between $0$ and $28$ with congruent to $6 \mod 35$.
-(you should not use any brute-force searching)
+2. Using Euler’s Theorem, find a number $x$ between $0$ and $28$ with congruent to $6 \mod 35$. (you should not use any brute-force searching)
+
+
+### Answer 
+
+#### Part 1 
+
+$$a^{\phi(n)} \equiv 1 \mod n$$
+
+$$n = 10, a = 7, \phi(10) = 4$$
+
+$$7^{4 * 250} \equiv 1 \mod 10$$
+
+$$\therefore 1$$
+
+#### Part 2
+
+$$x^{85} \equiv 6 \mod 35$$
+
+$$n = 35, a = 6, \phi(35) = 24$$
+
+$$6^{24 \times 3} \times 6^{13}\equiv 1 \mod 35$$
+
+$$6^{13}\mod 35 = 6$$
+
+$$\therefore 6$$
+
 
 ## Problem 6
 
 Suppose Fred sees your RSA signature on $m_{1}$ and on $m_{2}$ (i.e. he sees $m_{1}^{d}\mod n$ and $m_{2}^{d}\mod n$). How does he compute the signature on each of these messages: $m_{1}^{j}\mod n$ (for positive integer $j$), $m_{1}^{-1} \mod n$, $m_{1} \times m_{2} \mod n$, and in general $m_{1}^{j}\times m_{2}^{k}$ (for arbitrary integers $j$ and $k$)?
+
+
+### Answer
+
+$$m_{1}^{d} \mod n$$
+
+$$m^{2}\mod n$$
+
+$$(m_{1}^{d})^{j} \mod n = (m_{1}^{j})^{d} \mod n$$
+
+Fred calculates the multiplicative inverse
+
+$$(m_{1}^{d})^{(-1)}\mod n$$
+
+Then Fred can calculate $m_{1}$ and $m_{2}$.
+
+$$(m_{1}\times m_{2})^{d}\mod n = ((m_{1}^{d}\mod n) \times (m_{2}^{d} \mod n))\mod n$$
 
 
 ## Problem 7
@@ -82,6 +170,12 @@ How can she encrypt the message so that, when Bob receives it, he is sure about 
 1. Nobody else can view the content (confidentiality),
 2. The message is from Alice and no one has modified it (authentication, integrity).
 3. Nobody else (Eve) could trick Bob into thinking that Eve also generated the same message.
+
+
+### Answer 
+
+Alice can encrypt the message using Bob's key, then Alice presents her public key as a signature. Bob can then decrypt the message using his private key and ensure that the public key matches Alice's key. If the public keys are tampered with, then the senders will be know. i.e. Bob will know if Eve has tampered with the message. 
+
 
 
 ## Problem 9.18
@@ -98,6 +192,8 @@ Next, Bob gets Alice to authenticate (sign) $X$ with her private key (as in Figu
 ![[Pasted image 20240310210313.png]]
 
 
+### Answer | TODO
+
 ## Problem 11.3
 
 
@@ -108,7 +204,7 @@ Next, Bob gets Alice to authenticate (sign) $X$ with her private key (as in Figu
 2. Repeat part (a) for the hash function $h = (\sum\limits_{i=1}^{t}(a_{i})^{2})\mod n$
 3. Calculate the hash function of part (b) for $M = (189, 632, 900, 722, 349)$ and $n =989$
 
-
+### Answer | TODO
 
 ## Problem 12.9
 
@@ -127,7 +223,7 @@ under each key:
 2. What is the probability that someone else can successfully impersonate Alice?
 3. What is the probability that someone can replace an intercepted message with another message successfully?
 
-
+### Answer | TODO
 
 
 
