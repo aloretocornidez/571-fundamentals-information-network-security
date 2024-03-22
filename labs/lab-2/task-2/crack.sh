@@ -16,18 +16,18 @@ endTime=$(date -d "2018-04-18 02:08:49" +%s)
 # echo $test 
 # echo $ciphertext
 
-echo -n "" > output.txt 
-# loop through each possible start time 
-for time in $(seq $startTime $endTime); do 
-
-  # generate the key from the given time.
-  key=$(./main ${time})
-  
-  # echo ${key}
-
-  # generate the cipher text from the generated key
-  echo -n `echo -n ${plaintext} | xxd -r -p | openssl enc -aes-128-cbc -nopad -e -K ${key} -iv ${initVector} -nosalt | xxd -p` >> output.txt; echo " Key: ${key} Time: ${time}" >> output.txt
-
-done
+# echo -n "" > output.txt 
+# # loop through each possible start time 
+# for time in $(seq $startTime $endTime); do 
+#
+#   # generate the key from the given time.
+#   key=$(./main ${time})
+#   
+#   # echo ${key}
+#
+#   # generate the cipher text from the generated key
+#   echo -n `echo -n ${plaintext} | xxd -r -p | openssl enc -aes-128-cbc -nopad -e -K ${key} -iv ${initVector} -nosalt | xxd -p` >> output.txt; echo " Key: ${key} Time: ${time}" >> output.txt
+#
+# done
 
 grep -i "${ciphertext}" output.txt
