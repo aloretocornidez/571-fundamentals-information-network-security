@@ -114,16 +114,17 @@ database disclosure?
 In the Diffie–Hellman protocol, each participant selects a secret number $x$ and
 sends the other participant $\alpha \mod {q}$ for some public number $\alpha$
 What would happen if the participants sent each other for some public number
-$x^{\alpha}$ instead? Give at least one method Alice and Bob could use to agree
-on a key.
+$x^{\alpha}$ instead? 
+Give at least one method Alice and Bob could use to agree on a key.
 
 Can Darth break your system without finding the secret numbers?
+
 
 Can Darth find the secret numbers?
 
 ## Problem 15.2
 
-“We are under great pressure, Holmes.” Detective Lestrade looked nervous. “We
+“We are under great pressure, Holmes." Detective Lestrade looked nervous. “We
 have learned that copies of sensitive government documents are stored in
 computers of one foreign embassy here in London. Normally these documents exist
 in electronic form only on a selected few government computers that satisfy the
@@ -132,20 +133,20 @@ through the network connecting all government computers. But all messages in
 this network are encrypted using a top-secret encryption algorithm certified by
 our best crypto experts. Even the NSA and the KGB are unable to break it. And
 now these documents have appeared in hands of diplomats of a small, otherwise
-insignificant, country. And we have no idea how it could happen.” “But you do
-have some suspicion who did it, do you?” asked Holmes. “Yes, we did some routine
+insignificant, country. And we have no idea how it could happen." “But you do
+have some suspicion who did it, do you?" asked Holmes. “Yes, we did some routine
 investigation. There is a man who has legal access to one of the government
 computers and has frequent contacts with diplomats from the embassy. But the
 computer he has access to is not one of the trusted ones where these documents
 are normally stored. He is the suspect, but we have no idea how he could obtain
 copies of the documents. Even if he could obtain a copy of an encrypted
-document, he couldn’t decrypt it.” “Hmm, please describe the communication
-protocol used on the network.” Holmes opened his eyes, thus proving that he had
+document, he couldn't decrypt it." "Hmm, please describe the communication
+protocol used on the network." Holmes opened his eyes, thus proving that he had
 followed Lestrade’s talk with an attention that contrasted with his sleepy look.
 
 "The protocol is as follows. Each node $N$ of the network has been assigned a
 unique secret key $K_n$. This key is used to secure communcation between the
-node and a trusted server. That is, all the keys are stoed on the server. User
+node and a trusted server. That is, all the keys are stored on the server. User
 A, wishing to send a secret message $M$ to user B, initiates the following
 protocol:
 
