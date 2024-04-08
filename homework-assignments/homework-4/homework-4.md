@@ -131,8 +131,6 @@ In addition, there must be the following aspects of a PKI:
 
 # Problem 15.2
 
-<!-- TODO -->
-
 > Finish the sentence for Holmes.
 
 **"Well, I think you have your man, Lestrade. The protocol isn’t secure because
@@ -147,6 +145,8 @@ documents. After which, $Z$ can perform a plethora of attacks to decrypt the
 documents, assuming he has the computational power. In addition, since no
 verification of identity is present in the protocol, $Z$ can send malicious
 requests to manipulate the data on the servers for malicious purposes.
+
+<!-- TODO -->
 
 # Problem 16.4
 
