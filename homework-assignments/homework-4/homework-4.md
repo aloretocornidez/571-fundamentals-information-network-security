@@ -140,7 +140,13 @@ the server doesn’t authenticate users who send him a request. Apparently
 designers of the protocol have believed that sending $E(K_x, R)$ implicitly
 authenticates user X as the sender, as only X (and the server) knows $K_x$. But
 you know that $E(K_a, R)$ and $E(R, M)$ (see steps 1 and 3 of the protocol), the
-man, let's denote him as $Z$, will continue pretending to be A ** 
+man, let's denote him as $Z$, will continue pretending to be A **
+
+$Z$, will continue pretending to be A and send requests for copies of the
+documents. After which, $Z$ can perform a plethora of attacks to decrypt the
+documents, assuming he has the computational power. In addition, since no
+verification of identity is present in the protocol, $Z$ can send malicious
+requests to manipulate the data on the servers for malicious purposes.
 
 # Problem 16.4
 
