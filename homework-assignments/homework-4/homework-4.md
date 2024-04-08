@@ -66,16 +66,21 @@ with access to the communication channel).
 
 > Can Darth break your system without finding the secret numbers?
 
-However, this is done using the public information on the communication channel,
-so it is not secure, thus, Darth can find the secret key (as well as everyone
-with access to the communication channel).
+This depends on what is meant by breaking the system. Assuming that
+communication can be intercepted, there are multiple attacks that can allow
+Darth to conduct malicious behaviour, such as reflection and Man-In-The-Middle
+attack if the interception occurs before verification of the identity.
 
 > Can Darth find the secret numbers?
 
-In addition, Darth can find the secret numbers that are being used can be
-calculated using Fermat's Little Theorem in the following way:
+Yes, Darth can do the following:
 
-<!-- TODO -->
+- Darth intercepts $X_A$ and $X_B$
+- Darth computes the shared secret key, $K_{AB} = X^{AB} \mod {q}$
+
+This is simple to do because the security of the Diffie-Hellman key exchange
+protocol is reliant on the difficulty of solving the Discrete Log Problem.
+Sending the inputs to the function heavily compromises this assumed security.
 
 # Problem 15.6
 
@@ -140,13 +145,11 @@ authenticates user X as the sender, as only X (and the server) knows $K_x$. But
 you know that $E(K_a, R)$ and $E(R, M)$ (see steps 1 and 3 of the protocol), the
 man, let's denote him as $Z$, will continue pretending to be A **
 
-$Z$, will continue pretending to be A and send requests for copies of the
+... $Z$, will continue pretending to be A and send requests for copies of the
 documents. After which, $Z$ can perform a plethora of attacks to decrypt the
 documents, assuming he has the computational power. In addition, since no
 verification of identity is present in the protocol, $Z$ can send malicious
-requests to manipulate the data on the servers for malicious purposes.
-
-<!-- TODO -->
+requests to manipulate the data on the servers for nefarious purposes.
 
 # Problem 16.4
 
