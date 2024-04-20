@@ -1,5 +1,5 @@
 ---
-title: ECE 571 | Cryptography and Network Security | Homework 4
+title: ECE 571 | Cryptography and Network Security | Homework 5
 author: Alan Manuel Loreto Cornídez
 date: April 2nd, 2024
 output: pdf
@@ -71,6 +71,25 @@ protecting against these attacks.
   either.
 
 # Problem 6
+
+<!-- TODO -->
+
+- As transmitted by A:
+
+  - src: A
+  - dest: B
+
+- As transmitted by F1:
+
+  - src: A
+  - dest: B
+  - protocol: ESP
+
+- As recieved by B:
+
+  - src: F1
+  - dest: F2
+  - protocol: ESP
 
 <!-- TODO -->
 
