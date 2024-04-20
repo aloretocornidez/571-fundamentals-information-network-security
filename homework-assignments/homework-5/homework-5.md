@@ -44,17 +44,31 @@ How TLS addresses each attack:
   that a TLS packet will be cracked, even with a targeted plain-text attack.
 
 - Replay Attack: The use of Nonces in the handshake part of the TLS protocol
-  makes a replay attack much harder to execute. 
+  makes a replay attack much harder to execute.
 
-- Man-in-the-Middle Attack: 
+- Man-in-the-Middle Attack: The TLS protocol requires that a connection be
+  established before messages are sent. During the initial handshake protocol,
+  in TLSv1.3, the use of of the Diffie-Hellman or Elliptic Curve Diffie-Hellman
+  key exchanges ensures that these handshakes are not compromised. (TLSv1.3
+  removed static DH key exchanges and does not allow RSA encryption so that
+  cipher suites are not compromised if the private key is compromised.)
 
-- Password Sniffing:
+- Password Sniffing: Simply by using encryption, this attack is avoided.
 
-- IP Spoofing:
+The next three issues relate to network behaviour and not the communication
+between two endpoints (what TLS is made for) so TLS does not assist in
+protecting against these attacks.
 
-- IP Hijacking:
+- IP Spoofing: Unfortunately, IP spoofing is not directly handled by the TLS
+  protocol, in order to determine the source of a network packet, other measures
+  must be taken such as the use of an intrusion detection system or the use of
+  ingress/outgress filtering of packets.
 
-- SYN Flooding:
+- IP Hijacking: Similar to IP Spoofing, IP hijacking is not protected against by
+  the TLS protocol.
+
+- SYN Flooding: SYN flooding is not protected against by the TLS protocol
+  either.
 
 # Problem 6
 
