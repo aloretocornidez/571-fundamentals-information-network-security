@@ -72,8 +72,6 @@ protecting against these attacks.
 
 # Problem 6
 
-<!-- TODO -->
-
 - As transmitted by A:
 
   - src: A
