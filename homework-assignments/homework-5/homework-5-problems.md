@@ -99,3 +99,6 @@ The court tested the reliability of the witness under the same circumstances
 that existed on the night of the accident and concluded that the witness was
 correct in identifying the color of the cab 90% of the time. What is the
 probability that the cab involved in the incident was Blue rather than Green?
+
+
+

@@ -91,16 +91,68 @@ protecting against these attacks.
   - dest: F2
   - protocol: ESP
 
-<!-- TODO -->
-
 # Problem 7 | Firewall
 
-<!-- TODO -->
+- Rule 1: Allow any source address communicating with 192.168.1.0 with a port $>
+  1023$
+- Rule 2: Deny traffic from 192.168.1.1(the firewall) from all ports to any
+  address and any port.
+- Rule 3: Deny all traffic that has a destination address to 192.168.1.1(the
+  firewall)
+- Rule 4: Allow all traffic with source IP 192.168.1.0 from all src ports to all
+  dest ports and all dest IPs.
+- Rule 5: Allow all traffic that has a dest IP 192.168.1.2 with a dest port to
+  the SMTP port.
+- Rule 6: Allow all traffic that has a dest IP 192.168.1.3 with a dest port to
+  the HTTP port.
+- Rule 7: Deny all other traffic.
 
 # Problem 8 | IDS Password Management
 
-<!-- TODO -->
+- Without Feedback:
+
+$$\frac{26^{4}}{2} = 228,488 \text{ seconds} = 63.5 \text{ hours}$$
+
+- With Feedback for flagging an error as each incorrect character is entered:
+
+$$13 \times 4 = 52 \text{ seconds}$$
 
 # Problem 10 | IDS Base-Rate Fallacy
 
-<!-- TODO -->
+Define the following:
+
+$G$: The cab is green.
+
+$B$: The cab is blue.
+
+$W_{G}$: Witness identifies a green cab.
+
+$W_{B}$: Witness identifies a blue cab.
+
+We are given:
+
+Probability the cab is blue: $P(B) = 0.1$
+
+Probability the cab is green: $P(G) = 0.9$
+
+Probability the witness identifies a blue cab correctly: $P(W_{B} | B) = 0.9$
+Probability the witness identifies a blue cab incorrectly: $P(W_{B} | G) = 1 -
+P(W_{B} | B) = 0.1$
+
+Using Bayes' Theorem: $P(B | W_{B}) = \frac{P(W_{B} | B) \times P(B)}{P(W_{B})}$
+
+We require $P(W_{B})$. Using the Law of total probability, we can calculate:
+
+$P(W_{B}) = P(W_{B} | B) \times P(B) + P(W_{B} | G) \times P(G)$
+
+$P(W_{B}) = (0.9 \times 0.1) + (0.1 \times 0.9) = 0.18$
+
+Let us plug in the values to Bayes' Theorem:
+
+$P(B | W_{B}) = \frac{P(W_{B} | B) \times P(B)}{P(W_{B})} = \frac{0.9 \times
+0.1}{0.18} = 0.5$
+
+$\therefore P(B | W_{B}) = 0.5$
+
+This is a perfect example of the base-rate fallacy that often occurs when you
+fail to take into account the sample size of a group that is being evaluated.
