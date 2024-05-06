@@ -1,4 +1,6 @@
+
 **/*.pdf
+!/lecture-materials/
 **/.obsidian/
 
 **/build/
